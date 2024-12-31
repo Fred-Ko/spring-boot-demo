@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="spring-boot-demo.customer.customer-app.main" target="21" />
+      <module name="spring-boot-demo.customer.customer-app.test" target="21" />
+      <module name="spring-boot-demo.customer.customer-client.main" target="21" />
+      <module name="spring-boot-demo.customer.customer-client.test" target="21" />
+      <module name="spring-boot-demo.customer.customer-domain.main" target="21" />
+      <module name="spring-boot-demo.customer.customer-domain.test" target="21" />
+      <module name="spring-boot-demo.customerModule.customerModule-app" target="22" />
+      <module name="spring-boot-demo.customerModule.customerModule-app.main" target="21" />
+      <module name="spring-boot-demo.customerModule.customerModule-app.test" target="21" />
+      <module name="spring-boot-demo.customerModule.customerModule-client" target="22" />
+      <module name="spring-boot-demo.customerModule.customerModule-client.main" target="21" />
+      <module name="spring-boot-demo.customerModule.customerModule-client.test" target="21" />
+      <module name="spring-boot-demo.customerModule.customerModule-domain" target="22" />
+      <module name="spring-boot-demo.customerModule.customerModule-domain.main" target="21" />
+      <module name="spring-boot-demo.customerModule.customerModule-domain.test" target="21" />
+      <module name="spring-boot-demo.menu.menu-app.main" target="21" />
+      <module name="spring-boot-demo.menu.menu-app.test" target="21" />
+      <module name="spring-boot-demo.menu.menu-client.main" target="21" />
+      <module name="spring-boot-demo.menu.menu-client.test" target="21" />
+      <module name="spring-boot-demo.menu.menu-domain.main" target="21" />
+      <module name="spring-boot-demo.menu.menu-domain.test" target="21" />
+      <module name="spring-boot-demo.menuModule.menuModule-app" target="22" />
+      <module name="spring-boot-demo.menuModule.menuModule-app.main" target="21" />
+      <module name="spring-boot-demo.menuModule.menuModule-app.test" target="21" />
+      <module name="spring-boot-demo.menuModule.menuModule-client" target="22" />
+      <module name="spring-boot-demo.menuModule.menuModule-client.main" target="21" />
+      <module name="spring-boot-demo.menuModule.menuModule-client.test" target="21" />
+      <module name="spring-boot-demo.menuModule.menuModule-domain" target="22" />
+      <module name="spring-boot-demo.menuModule.menuModule-domain.main" target="21" />
+      <module name="spring-boot-demo.menuModule.menuModule-domain.test" target="21" />
+      <module name="spring-boot-demo.order.order-app.main" target="21" />
+      <module name="spring-boot-demo.order.order-app.test" target="21" />
+      <module name="spring-boot-demo.order.order-client.main" target="21" />
+      <module name="spring-boot-demo.order.order-client.test" target="21" />
+      <module name="spring-boot-demo.order.order-domain.main" target="21" />
+      <module name="spring-boot-demo.order.order-domain.test" target="21" />
+      <module name="spring-boot-demo.orderModule.orderModule-app" target="22" />
+      <module name="spring-boot-demo.orderModule.orderModule-app.main" target="21" />
+      <module name="spring-boot-demo.orderModule.orderModule-app.test" target="21" />
+      <module name="spring-boot-demo.orderModule.orderModule-client" target="22" />
+      <module name="spring-boot-demo.orderModule.orderModule-client.main" target="21" />
+      <module name="spring-boot-demo.orderModule.orderModule-client.test" target="21" />
+      <module name="spring-boot-demo.orderModule.orderModule-domain" target="22" />
+      <module name="spring-boot-demo.orderModule.orderModule-domain.main" target="21" />
+      <module name="spring-boot-demo.orderModule.orderModule-domain.test" target="21" />
+      <module name="spring-boot-demo.payment.payment-app.main" target="21" />
+      <module name="spring-boot-demo.payment.payment-app.test" target="21" />
+      <module name="spring-boot-demo.payment.payment-client.main" target="21" />
+      <module name="spring-boot-demo.payment.payment-client.test" target="21" />
+      <module name="spring-boot-demo.payment.payment-domain.main" target="21" />
+      <module name="spring-boot-demo.payment.payment-domain.test" target="21" />
+      <module name="spring-boot-demo.paymentModule.paymentModule-app" target="22" />
+      <module name="spring-boot-demo.paymentModule.paymentModule-app.main" target="21" />
+      <module name="spring-boot-demo.paymentModule.paymentModule-app.test" target="21" />
+      <module name="spring-boot-demo.paymentModule.paymentModule-client" target="22" />
+      <module name="spring-boot-demo.paymentModule.paymentModule-client.main" target="21" />
+      <module name="spring-boot-demo.paymentModule.paymentModule-client.test" target="21" />
+      <module name="spring-boot-demo.paymentModule.paymentModule-domain" target="22" />
+      <module name="spring-boot-demo.paymentModule.paymentModule-domain.main" target="21" />
+      <module name="spring-boot-demo.paymentModule.paymentModule-domain.test" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
