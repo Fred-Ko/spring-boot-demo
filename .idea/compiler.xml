@@ -2,6 +2,17 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="restaurant-msa-project.domains.customer.client.main" target="21" />
+      <module name="restaurant-msa-project.domains.customer.client.test" target="21" />
+      <module name="restaurant-msa-project.domains.menu.client.main" target="21" />
+      <module name="restaurant-msa-project.domains.menu.client.test" target="21" />
+      <module name="restaurant-msa-project.domains.order.client.main" target="21" />
+      <module name="restaurant-msa-project.domains.order.client.test" target="21" />
+      <module name="restaurant-msa-project.domains.payment.client.main" target="21" />
+      <module name="restaurant-msa-project.domains.payment.client.test" target="21" />
+      <module name="restaurant-msa-project.domains.untitled.main" target="21" />
+      <module name="restaurant-msa-project.domains.untitled.test" target="21" />
+      <module name="spring-boot-demo" target="22" />
       <module name="spring-boot-demo.customer.customer-app.main" target="21" />
       <module name="spring-boot-demo.customer.customer-app.test" target="21" />
       <module name="spring-boot-demo.customer.customer-client.main" target="21" />
@@ -17,6 +28,7 @@
       <module name="spring-boot-demo.customerModule.customerModule-domain" target="22" />
       <module name="spring-boot-demo.customerModule.customerModule-domain.main" target="21" />
       <module name="spring-boot-demo.customerModule.customerModule-domain.test" target="21" />
+      <module name="spring-boot-demo.main" target="21" />
       <module name="spring-boot-demo.menu.menu-app.main" target="21" />
       <module name="spring-boot-demo.menu.menu-app.test" target="21" />
       <module name="spring-boot-demo.menu.menu-client.main" target="21" />
@@ -62,6 +74,7 @@
       <module name="spring-boot-demo.paymentModule.paymentModule-domain" target="22" />
       <module name="spring-boot-demo.paymentModule.paymentModule-domain.main" target="21" />
       <module name="spring-boot-demo.paymentModule.paymentModule-domain.test" target="21" />
+      <module name="spring-boot-demo.test" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -20,7 +20,7 @@ repositories {
     gradlePluginPortal()
 }
 
-group = "com.example"
+group = "com.restaurant"
 version = "3.4.1"
 
 dependencies {
@@ -36,6 +36,7 @@ dependencies {
     testImplementation("org.springframework.kafka:spring-kafka-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
+
 
 allprojects {
     repositories {
@@ -53,19 +54,25 @@ allprojects {
     tasks.withType<JavaCompile> {
         options.release.set(21)
     }
+
+    tasks.withType<org.gradle.api.tasks.testing.Test> {
+        useJUnitPlatform()
+    }
 }
 
-tasks.withType<org.gradle.api.tasks.testing.Test> {
-    useJUnitPlatform()
+sourceSets {
+    main {
+        java {
+            setSrcDirs(listOf("src/main/kotlin"))
+        }
+    }
 }
-
-
 
 // ===================== 유틸 함수들 ===================== //
 
 // 루트 settings.gradle.kts 파일 객체
 val settingsFile = File(rootProject.projectDir, "settings.gradle.kts")
-val packageName = "com.example/project"
+val groupName = "com.restaurant"
 /** 
  * settings.gradle.kts가 없으면 자동 생성.
  */
@@ -165,14 +172,14 @@ fun createBuildGradleKts(moduleDir: File, extraContent: String = "") {
 /**
  * 기본 소스 디렉토리 구조 생성 (src/main/kotlin, src/test/kotlin 등).
  */
-fun createDefaultSourceDirs(baseDir: File) {
-    // 패키지 이름을 디렉토리 경로로 변환
-    val packagePath = packageName.replace('.', '/')
+fun createDefaultSourceDirs(baseDir: File, moduleName: String, sub: String? = null) {
+    // moduleName을 사용하여 패키지 경로 설정
+    val packagePath = "$groupName.$moduleName".replace('.', '/')
     
     val dirs = listOf(
-        "src/main/kotlin/$packagePath",
+        "src/main/kotlin/$packagePath/$sub",
         "src/main/resources",
-        "src/test/kotlin/$packagePath",
+        "src/test/kotlin/$packagePath/$sub",
         "src/test/resources"
     )
     
@@ -189,10 +196,10 @@ fun createDefaultSourceDirs(baseDir: File) {
 /**
  * Spring Boot 메인 클래스를 생성합니다.
  */
-fun createSpringBootMainClass(subModuleDir: File, microserviceName: String) {
-    val mainKt = File(subModuleDir, "src/main/kotlin/Application.kt")
+fun createSpringBootMainClass(subModuleDir: File, microserviceName: String, sub: String) {
+    // 원하는 경로로 수정
+    val mainKt = File(subModuleDir, "src/main/kotlin/${groupName.split('.').joinToString("/")}/$microserviceName/$sub/Application.kt")
     if (!mainKt.exists()) {
-        // 디렉토리가 없는 경우 다시 시도
         if (!safeMkdirs(mainKt.parentFile)) {
             println("⚠️ Application.kt 생성 실패 (디렉토리 미존재).")
             return
@@ -206,7 +213,7 @@ fun createSpringBootMainClass(subModuleDir: File, microserviceName: String) {
             import org.springframework.boot.runApplication
 
             @SpringBootApplication
-            class Application
+            open class Application
 
             fun main(args: Array<String>) {
                 runApplication<Application>(*args)
@@ -391,7 +398,7 @@ tasks.register("createMicroserviceModule") {
         }
         println("마이크로서비스 루트 디렉토리 확인됨: ${targetBaseDir.absolutePath}")
 
-        val subModules = listOf("domain", "client", "app")
+        val subModules = listOf("domain","presentation","app")
         subModules.forEach { sub ->
             val subModuleDir = File(targetBaseDir, sub)
             if (!safeMkdirs(subModuleDir)) {
@@ -399,14 +406,14 @@ tasks.register("createMicroserviceModule") {
                 return@forEach
             }
             createBuildGradleKts(subModuleDir)
-            createDefaultSourceDirs(subModuleDir, microserviceName)
+            createDefaultSourceDirs(subModuleDir, microserviceName, sub)
 
             // settings.gradle.kts에 등록
             addModuleInclude(":${targetBaseDir.relativeTo(rootProject.projectDir).path.replace(File.separator, ":")}:$sub")
 
             // app 모듈만 따로 Spring Boot 메인 클래스 생성
             if (sub == "app") {
-                createSpringBootMainClass(subModuleDir, microserviceName)
+                createSpringBootMainClass(subModuleDir, microserviceName, sub)
             }
         }
 

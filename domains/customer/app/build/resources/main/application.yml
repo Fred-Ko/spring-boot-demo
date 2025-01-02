@@ -1,0 +1,21 @@
+# domains/customer/app/src/main/resources/application.yml
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/restaurant
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
