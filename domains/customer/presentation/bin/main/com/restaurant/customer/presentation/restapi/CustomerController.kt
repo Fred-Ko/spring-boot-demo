@@ -1,5 +1,6 @@
 package com.restaurant.customer.presentation.restapi
 
+import com.restaurant.customer.presentation.mapper.CustomerMapper
 import com.restaurant.customer.domain.service.commands.CreateCustomerCommand
 import com.restaurant.customer.domain.service.commands.CreateCustomerInquiryCommand
 import com.restaurant.customer.domain.service.commands.UpdateCustomerCommand
@@ -25,21 +26,20 @@ class CustomerController(
     @GetMapping("/{id}")
     fun getCustomer(@PathVariable id: Long): CustomerDto {
         val query = GetCustomerQuery(id)
-        return customerQueryHandler.handle(query)
+        val customerModel = customerQueryHandler.handle(query)
+        return CustomerMapper.toDto(customerModel)
     }
 
     @PostMapping
-    fun createCustomer(@RequestBody customerDto: CustomerDto): CustomerDto {
+    fun createCustomer(@RequestBody customerDto: CustomerDto) {
         val command = CreateCustomerCommand(customerDto.name, customerDto.email)
         customerCommandHandler.handle(command)
-        return customerDto
     }
 
     @PutMapping("/{id}")
-    fun updateCustomer(@PathVariable id: Long, @RequestBody customerDto: CustomerDto): CustomerDto {
+    fun updateCustomer(@PathVariable id: Long, @RequestBody customerDto: CustomerDto) {
         val command = UpdateCustomerCommand(id, customerDto.name, customerDto.email)
         customerCommandHandler.handle(command)
-        return customerDto
     }
 
     @DeleteMapping("/{id}")
@@ -51,7 +51,8 @@ class CustomerController(
     @GetMapping("/{id}/grade")
     fun getCustomerGrade(@PathVariable id: Long): CustomerGradeDto {
         val query = GetCustomerGradeQuery(id)
-        return customerQueryHandler.handle(query)
+        val customerGradeModel = customerQueryHandler.handle(query)
+        return CustomerMapper.toDto(customerGradeModel)
     }
 
     @PutMapping("/{id}/grade")
@@ -69,6 +70,7 @@ class CustomerController(
     @GetMapping("/{id}/inquiries")
     fun getCustomerInquiries(@PathVariable id: Long): List<CustomerInquiryDto> {
         val query = GetCustomerInquiriesQuery(id)
-        return customerQueryHandler.handle(query)
+        val inquiryModels = customerQueryHandler.handle(query)
+        return inquiryModels.map { CustomerMapper.toDto(it) }
     }
 }

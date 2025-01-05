@@ -1,7 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.gradle.api.tasks.Exec
-import java.io.IOException
-
 // 버전 변수 선언
 val kotlinVersion = "2.1.0"
 val springBootVersion = "3.4.1"
@@ -20,43 +16,25 @@ repositories {
     gradlePluginPortal()
 }
 
-group = "com.restaurant"
-version = "3.4.1"
-
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.springframework.kafka:spring-kafka")
-    // implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    // runtimeOnly("org.postgresql:postgresql")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    testImplementation("org.springframework.kafka:spring-kafka-test")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
-
-
 allprojects {
+    group = "com.restaurant"
+    version = "3.4.1"
+
     repositories {
         mavenCentral()
         gradlePluginPortal()
     }
+}
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
-            freeCompilerArgs.add("-Xjvm-default=all")
-        }
-    }
+subprojects{
+    apply(plugin = "kotlin")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
 
-    tasks.withType<JavaCompile> {
-        options.release.set(21)
-    }
-
-    tasks.withType<org.gradle.api.tasks.testing.Test> {
-        useJUnitPlatform()
+    dependencies {
+        implementation("org.springframework.boot:spring-boot-starter")
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+        implementation("org.jetbrains.kotlin:kotlin-stdlib")
     }
 }
 
@@ -67,7 +45,6 @@ sourceSets {
         }
     }
 }
-
 // ===================== 유틸 함수들 ===================== //
 
 // 루트 settings.gradle.kts 파일 객체
@@ -398,7 +375,7 @@ tasks.register("createMicroserviceModule") {
         }
         println("마이크로서비스 루트 디렉토리 확인됨: ${targetBaseDir.absolutePath}")
 
-        val subModules = listOf("domain","presentation","app")
+        val subModules = listOf("domain","presentation","persistence","app")
         subModules.forEach { sub ->
             val subModuleDir = File(targetBaseDir, sub)
             if (!safeMkdirs(subModuleDir)) {
@@ -445,3 +422,4 @@ tasks.register("updateSettingsGradle") {
         println("updateSettingsGradle 작업이 완료되었습니다.")
     }
 }
+

@@ -1,7 +1,7 @@
 package com.restaurant.customer.domain.service
 
 import ICustomerService
-import com.example.customer.domain.Customer
+import com.restaurant.customer.domain.repository.entities.Customer
 import com.restaurant.customer.domain.repository.CustomerRepository
 import org.springframework.stereotype.Service
 

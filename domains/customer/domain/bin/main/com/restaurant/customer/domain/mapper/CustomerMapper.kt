@@ -1,8 +1,5 @@
 package com.restaurant.customer.domain.mapper
 
-import com.example.customer.domain.Customer
-import com.example.customer.domain.CustomerInfo
-import com.example.customer.domain.CustomerInquiry
 import com.restaurant.customer.domain.model.CustomerModel
 import com.restaurant.customer.domain.model.CustomerInfoModel
 import com.restaurant.customer.domain.model.CustomerInquiryModel

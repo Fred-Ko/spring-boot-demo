@@ -1,6 +1,6 @@
 package com.restaurant.customer.domain.model
 
-import com.example.customer.domain.CustomerGrade
+import com.restaurant.customer.domain.repository.entities.CustomerGrade
 
 data class CustomerModel(
     val id: Long = 0,

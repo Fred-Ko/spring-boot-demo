@@ -16,3 +16,6 @@ dependencies {
     implementation(project(":domains:customer:presentation"))
 }
 
+ tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+     mainClass.set("com.restaurant.customer.app.ApplicationKt")
+ }

@@ -1,8 +1,5 @@
 package com.restaurant.customer.domain.mapper
 
-import com.restaurant.customer.domain.repository.entities.Customer
-import com.restaurant.customer.domain.repository.entities.CustomerInfo
-import com.restaurant.customer.domain.repository.entities.CustomerInquiry
 import com.restaurant.customer.domain.model.CustomerModel
 import com.restaurant.customer.domain.model.CustomerInfoModel
 import com.restaurant.customer.domain.model.CustomerInquiryModel

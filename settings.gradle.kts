@@ -1,6 +1,5 @@
 rootProject.name = "restaurant-msa-project"
 
-
 include(":domains:order:domain")
 
 include(":domains:order:presentation")
@@ -24,3 +23,11 @@ include(":domains:menu:domain")
 include(":domains:menu:presentation")
 
 include(":domains:menu:app")
+
+include(":domains:order:persistence")
+
+include(":domains:customer:persistence")
+
+include(":domains:payment:persistence")
+
+include(":domains:menu:persistence")
