@@ -9,27 +9,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/domains" />
-            <option value="$PROJECT_DIR$/domains/customer" />
-            <option value="$PROJECT_DIR$/domains/customer/app" />
-            <option value="$PROJECT_DIR$/domains/customer/domain" />
-            <option value="$PROJECT_DIR$/domains/customer/persistence" />
-            <option value="$PROJECT_DIR$/domains/customer/presentation" />
-            <option value="$PROJECT_DIR$/domains/menu" />
-            <option value="$PROJECT_DIR$/domains/menu/app" />
-            <option value="$PROJECT_DIR$/domains/menu/domain" />
-            <option value="$PROJECT_DIR$/domains/menu/persistence" />
-            <option value="$PROJECT_DIR$/domains/menu/presentation" />
-            <option value="$PROJECT_DIR$/domains/order" />
-            <option value="$PROJECT_DIR$/domains/order/app" />
-            <option value="$PROJECT_DIR$/domains/order/domain" />
-            <option value="$PROJECT_DIR$/domains/order/persistence" />
-            <option value="$PROJECT_DIR$/domains/order/presentation" />
-            <option value="$PROJECT_DIR$/domains/payment" />
-            <option value="$PROJECT_DIR$/domains/payment/app" />
-            <option value="$PROJECT_DIR$/domains/payment/domain" />
-            <option value="$PROJECT_DIR$/domains/payment/persistence" />
-            <option value="$PROJECT_DIR$/domains/payment/presentation" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -1,3 +1,5 @@
+import java.io.File
+
 // 버전 변수 선언
 val kotlinVersion = "2.1.0"
 val springBootVersion = "3.4.1"
@@ -45,381 +47,288 @@ sourceSets {
         }
     }
 }
-// ===================== 유틸 함수들 ===================== //
 
-// 루트 settings.gradle.kts 파일 객체
-val settingsFile = File(rootProject.projectDir, "settings.gradle.kts")
-val groupName = "com.restaurant"
-/** 
- * settings.gradle.kts가 없으면 자동 생성.
- */
-fun ensureSettingsFile() {
-    if (!settingsFile.exists()) {
-        println("settings.gradle.kts가 없어 새로 생성합니다.")
-        settingsFile.writeText(
-            """
-            // 자동 생성된 settings.gradle.kts
-            rootProject.name = "${rootProject.name}"
-            """.trimIndent()
-        )
-    }
-}
 
-/**
- * settings.gradle.kts에 include(":xxx") 추가 (중복 검사).
- * 디렉토리가 없거나 파일인 경우 등은 확인하지 않고 단순 라인 추가만 담당.
- */
-fun addModuleInclude(modulePath: String) {
-    ensureSettingsFile()
-    val content = settingsFile.readText()
-    val includeLine = """include("$modulePath")"""
-    if (content.contains(includeLine)) {
-        println("이미 포함된 모듈입니다: $includeLine")
-    } else {
-        settingsFile.appendText("\n$includeLine\n")
-        println("settings.gradle.kts에 모듈을 추가했습니다: $includeLine")
-    }
-}
+// ===============================================================================================================================
 
-/**
- * 디렉토리를 만들고, 이미 파일이 있으면 에러 대신 로그만 남기고 SKIP.
- */
-fun safeMkdirs(dir: File): Boolean {
-    if (dir.exists()) {
-        return if (dir.isDirectory) {
-            // 이미 디렉토리가 있는 경우 OK
-            true
-        } else {
-            // 파일이 존재하는 경우
-            println("⚠️ 경로가 디렉토리가 아닌 파일입니다: ${dir.absolutePath}")
-            println("   디렉토리 생성 불가하므로 스킵합니다. (원치 않으면 수동 조치 필요)")
-            false
-        }
-    } else {
-        val result = dir.mkdirs()
-        if (result) {
-            println("디렉토리를 생성했습니다: ${dir.absolutePath}")
-        } else {
-            println("⚠️ 디렉토리 생성 실패: ${dir.absolutePath}")
-        }
-        return result
-    }
-}
+group = "com.restaurant" // 슬래시 대신 점 사용
 
-/**
- * build.gradle.kts를 생성하되, 이미 존재하면 덮어쓰지 않고 로그만 출력.
- */
-fun createBuildGradleKts(moduleDir: File, extraContent: String = "") {
-    // 디렉토리가 없으면 생성 시도
-    if (!safeMkdirs(moduleDir)) {
-        println("⚠️ createBuildGradleKts: '${moduleDir.name}' 디렉토리를 준비하지 못했으므로 스킵합니다.")
-        return
-    }
+tasks.register("createMicroserviceModule") {
+    group = "setup"
+    description = "Creates the folder structure and essential files for a specified service with CQRS and Hexagonal Architecture"
 
-    val buildGradleKts = File(moduleDir, "build.gradle.kts")
-    if (buildGradleKts.exists()) {
-        // 이미 존재하면 건드리지 않음
-        println("build.gradle.kts가 이미 존재합니다: ${buildGradleKts.path}")
-    } else {
-        println("build.gradle.kts를 생성합니다: ${buildGradleKts.path}")
-        buildGradleKts.writeText(
-            """
-            // 자동 생성된 build.gradle.kts
-            plugins {
-                kotlin("jvm") version "$kotlinVersion"
-                kotlin("plugin.spring") version "$kotlinVersion"
-                id("org.springframework.boot") version "$springBootVersion"
-                id("io.spring.dependency-management") version "$dependencyManagementVersion"
-            }
-            
-            repositories {
-                mavenCentral()
-            }
-            
-            dependencies {
-                // 필요한 의존성을 추가하세요
-            }
-            
-            $extraContent
-            """.trimIndent()
-        )
-    }
-}
-
-/**
- * 기본 소스 디렉토리 구조 생성 (src/main/kotlin, src/test/kotlin 등).
- */
-fun createDefaultSourceDirs(baseDir: File, moduleName: String, sub: String? = null) {
-    // moduleName을 사용하여 패키지 경로 설정
-    val packagePath = "$groupName.$moduleName".replace('.', '/')
-    
-    val dirs = listOf(
-        "src/main/kotlin/$packagePath/$sub",
-        "src/main/resources",
-        "src/test/kotlin/$packagePath/$sub",
-        "src/test/resources"
-    )
-    
-    dirs.forEach { relativePath ->
-        val dirFile = File(baseDir, relativePath)
-        if (safeMkdirs(dirFile)) {
-            println("디렉토리 존재(또는 생성) 확인됨: ${dirFile.path}")
-        } else {
-            println("⚠️ 소스 디렉토리를 준비하지 못했습니다: ${dirFile.path}")
-        }
-    }
-}
-
-/**
- * Spring Boot 메인 클래스를 생성합니다.
- */
-fun createSpringBootMainClass(subModuleDir: File, microserviceName: String, sub: String) {
-    // 원하는 경로로 수정
-    val mainKt = File(subModuleDir, "src/main/kotlin/${groupName.split('.').joinToString("/")}/$microserviceName/$sub/Application.kt")
-    if (!mainKt.exists()) {
-        if (!safeMkdirs(mainKt.parentFile)) {
-            println("⚠️ Application.kt 생성 실패 (디렉토리 미존재).")
-            return
-        }
-        println("Spring Boot 메인 클래스를 생성합니다: ${mainKt.path}")
-        mainKt.writeText(
-            """
-            package $microserviceName.app
-
-            import org.springframework.boot.autoconfigure.SpringBootApplication
-            import org.springframework.boot.runApplication
-
-            @SpringBootApplication
-            open class Application
-
-            fun main(args: Array<String>) {
-                runApplication<Application>(*args)
-            }
-            """.trimIndent()
-        )
-    } else {
-        println("이미 Spring Boot 메인 클래스 파일이 존재합니다: ${mainKt.path}")
-    }
-}
-
-// ===================== Task들 ===================== //
-
-// 1. initializeProject Task
-tasks.register("initializeProject") {
-    group = "project-setup"
-    description = "프로젝트의 초기 설정을 수행하여 멀티 모듈 환경을 준비합니다."
+    // 서비스 이름과 베이스 디렉토리를 필수 인자로 받습니다.
+    val baseDirPath: String? = project.findProperty("baseDir") as String?
+    val serviceName: String? = project.findProperty("serviceName") as String?
 
     doLast {
-        val rootDir = rootProject.projectDir
-        val buildKtsFile = File(rootDir, "build.gradle.kts")
-        val settingsKtsFile = File(rootDir, "settings.gradle.kts")
+        if (baseDirPath == null) {
+            println("Error: baseDir is not set")
+            throw GradleException("baseDir is not set")
+        }
 
-        if (!buildKtsFile.exists()) {
-            buildKtsFile.writeText(
-                """
-                // 자동 생성된 루트 build.gradle.kts
-                plugins {
-                    // 필요 시 루트 프로젝트용 플러그인 추가
-                }
-                
-                allprojects {
-                    repositories {
-                        mavenCentral()
+        if (serviceName == null) {
+            println("Error: serviceName is not set")
+            throw GradleException("serviceName is not set")
+        }
+
+        val baseDir = file("$baseDirPath/$serviceName")
+
+        if (!baseDir.exists()) {
+            baseDir.mkdirs()
+            println("Created base directory: $baseDir")
+        } else {
+            println("Base directory already exists: $baseDir")
+        }
+
+        // Define the list of directories to create
+        val directories = listOf(
+            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/command/usecase",
+            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/command/handlers",
+            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/query/usecase",
+            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/query/handlers",
+            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/service",
+            "core/src/main/kotlin/com/restaurant/$serviceName/core/domain/model",
+            "core/src/main/kotlin/com/restaurant/$serviceName/core/domain/repository",
+            "core/src/main/resources",
+            "core/src/test/kotlin/com/restaurant/$serviceName/core",
+            
+            "adapter-inbound/src/main/kotlin/com/restaurant/$serviceName/adapter/inbound/controller",
+            "adapter-inbound/src/main/resources",
+            "adapter-inbound/src/test/kotlin/com/restaurant/$serviceName/adapter/inbound",
+            "adapter-inbound/src/test/resources",
+            
+            "adapter-outbound/src/main/kotlin/com/restaurant/$serviceName/adapter/outbound/api",
+            "adapter-outbound/src/main/kotlin/com/restaurant/$serviceName/adapter/outbound/persistence/entity",
+            "adapter-outbound/src/main/kotlin/com/restaurant/$serviceName/adapter/outbound/persistence/repository",
+            "adapter-outbound/src/main/resources",
+            "adapter-outbound/src/test/kotlin/com/restaurant/$serviceName/adapter/outbound/api",
+            "adapter-outbound/src/test/kotlin/com/restaurant/$serviceName/adapter/outbound/persistence/entity",
+            "adapter-outbound/src/test/kotlin/com/restaurant/$serviceName/adapter/outbound/persistence/repository",
+            "adapter-outbound/src/test/resources",
+            
+            "mapper/src/main/kotlin/com/restaurant/$serviceName/mapper",
+            "mapper/src/test/kotlin/com/restaurant/$serviceName/mapper",
+            
+            "shared/src/main/kotlin/com/restaurant/$serviceName/shared/config",
+            "shared/src/main/kotlin/com/restaurant/$serviceName/shared/dto",
+            "shared/src/main/kotlin/com/restaurant/$serviceName/shared/util",
+            "shared/src/main/resources",
+            "shared/src/test/kotlin/com/restaurant/$serviceName/shared/config",
+            "shared/src/test/kotlin/com/restaurant/$serviceName/shared/dto",
+            "shared/src/test/kotlin/com/restaurant/$serviceName/shared/util",
+            "shared/src/test/resources",
+            
+            "test/src"
+        )
+
+        // Create each directory if it doesn't exist
+        directories.forEach { dirPath ->
+            val dir = file("$baseDir/$dirPath")
+            if (!dir.exists()) {
+                dir.mkdirs()
+                println("Created directory: $dir")
+            } else {
+                println("Directory already exists: $dir")
+            }
+        }
+
+        // Define the list of essential files to create
+        val files = listOf(
+            // Root of service
+            "$baseDir/build.gradle.kts",
+
+            // Core module
+            "$baseDir/core/build.gradle.kts",
+
+            // Adapter-Inbound module
+            "$baseDir/adapter-inbound/build.gradle.kts",
+
+            // Adapter-Outbound module
+            "$baseDir/adapter-outbound/build.gradle.kts",
+
+            // Mapper module
+            "$baseDir/mapper/build.gradle.kts",
+
+            // Shared module
+            "$baseDir/shared/build.gradle.kts",
+
+            // 통합 테스트 모듈
+            "$baseDir/test/build.gradle.kts",
+
+            // Core application.yml
+            "$baseDir/core/src/main/resources/application.yml",
+
+            // Adapter-Inbound application.yml
+            "$baseDir/adapter-inbound/src/main/resources/application.yml",
+
+            // Adapter-Outbound application.yml
+            "$baseDir/adapter-outbound/src/main/resources/application.yml",
+
+            // Shared application.yml
+            "$baseDir/shared/src/main/resources/application.yml"
+        )
+
+        // Create each file with template content if it doesn't exist
+        files.forEach { filePath ->
+            val file = file(filePath)
+            if (!file.exists()) {
+                file.parentFile.mkdirs() // Ensure parent directories exist
+                file.createNewFile()
+                // Write template content based on the file type
+                when {
+                    filePath.endsWith("build.gradle.kts") -> {
+                        val moduleName = filePath.substringAfter("$serviceName/").substringBefore("/")
+                        val content = when (moduleName) {
+                            "core" -> """
+                                plugins {
+                                    kotlin("jvm")
+                                }
+
+                                dependencies {
+                                    implementation(project(":common-shared"))
+                                }
+                                """.trimIndent()
+                            "adapter-inbound" -> """
+                                plugins {
+                                    kotlin("jvm")
+                                }
+
+                                dependencies {
+                                    implementation(project(":core"))
+                                    implementation("org.springframework.boot:spring-boot-starter-web")
+                                    // 추가적인 의존성 선언
+                                }
+                                """.trimIndent()
+                            "adapter-outbound" -> """
+                                plugins {
+                                    kotlin("jvm")
+                                }
+
+                                dependencies {
+                                    implementation(project(":core"))
+                                    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+                                    implementation("org.postgresql:postgresql")
+                                    // 추가적인 의존성 선언
+                                }
+                                """.trimIndent()
+                            "mapper" -> """
+                                plugins {
+                                    kotlin("jvm")
+                                    kotlin("kapt")
+                                }
+
+                                dependencies {
+                                    implementation(project(":core"))
+                                    implementation("org.mapstruct:mapstruct")
+                                    kapt("org.mapstruct:mapstruct-processor")
+                                }
+                                """.trimIndent()
+                            "shared" -> """
+                                plugins {
+                                    kotlin("jvm")
+                                }
+
+                                dependencies {
+                                    implementation(project(":common-shared"))
+                                    // 추가적인 의존성 선언
+                                }
+                                """.trimIndent()
+                            "test" -> """
+                                plugins {
+                                    kotlin("jvm")
+                                }
+
+                                dependencies {
+                                    implementation(project(":core"))
+                                    implementation("org.springframework.boot:spring-boot-starter-test")
+                                    // 추가적인 의존성 선언
+                                }
+                                """.trimIndent()
+                            else -> """
+                                plugins {
+                                    kotlin("jvm")
+                                }
+
+                                dependencies {
+                                    // 모듈별 의존성 선언
+                                }
+                                """.trimIndent()
+                        }
+                        file.writeText(content)
+                        println("Created file: $file")
+                    }
+                    filePath.endsWith("application.yml") -> {
+                        val modulePath = filePath.substringAfter("$serviceName/")
+                        val content = when {
+                            modulePath.startsWith("core") -> """
+                                spring:
+                                  application:
+                                    name: ${serviceName}-core
+
+                                # 데이터베이스 설정 (예시)
+                                spring:
+                                  datasource:
+                                    url: jdbc:postgresql://localhost:5432/${serviceName}
+                                    username: user
+                                    password: password
+                                  jpa:
+                                    hibernate:
+                                      ddl-auto: update
+                                    show-sql: true
+                                """.trimIndent()
+                            modulePath.startsWith("adapter-inbound") -> """
+                                spring:
+                                  application:
+                                    name: ${serviceName}-adapter-inbound
+                                """.trimIndent()
+                            modulePath.startsWith("adapter-outbound") -> """
+                                spring:
+                                  application:
+                                    name: ${serviceName}-adapter-outbound
+                                """.trimIndent()
+                            modulePath.startsWith("shared") -> """
+                                spring:
+                                  application:
+                                    name: ${serviceName}-shared
+                                """.trimIndent()
+                            else -> """
+                                spring:
+                                  application:
+                                    name: $serviceName
+                                """.trimIndent()
+                        }
+                        file.writeText(content)
+                        println("Created file: $file")
+                    }
+                    else -> {
+                        // 기본 템플릿 (필요 시 확장 가능)
+                        file.writeText("// TODO: Implement $filePath")
+                        println("Created file: $file with placeholder content")
                     }
                 }
-                
-                """.trimIndent()
-            )
-            println("루트 build.gradle.kts 파일을 생성했습니다: ${buildKtsFile.path}")
-        } else {
-            println("루트 build.gradle.kts 파일이 이미 존재합니다: ${buildKtsFile.path}")
+            } else {
+                println("File already exists: $file")
+            }
         }
 
-        if (!settingsKtsFile.exists()) {
-            settingsKtsFile.writeText(
+        // 공통 모듈의 application.yml 생성
+        val commonAppYml = file("${baseDir}/common-shared/src/main/resources/application.yml")
+        if (!commonAppYml.exists()) {
+            commonAppYml.parentFile.mkdirs()
+            commonAppYml.createNewFile()
+            commonAppYml.writeText(
                 """
-                // 자동 생성된 settings.gradle.kts
-                rootProject.name = "${rootProject.name}"
+                spring:
+                  application:
+                    name: common-shared
+
+                # 공통 설정 (예시)
                 """.trimIndent()
             )
-            println("settings.gradle.kts 파일을 생성했습니다: ${settingsKtsFile.path}")
+            println("Created common-shared application.yml: $commonAppYml")
         } else {
-            println("settings.gradle.kts 파일이 이미 존재합니다: ${settingsKtsFile.path}")
+            println("common-shared application.yml already exists: $commonAppYml")
         }
-
-        println("프로젝트 초기 설정이 완료되었습니다.")
     }
 }
-
-// 2. addModuleToSettings Task
-tasks.register("addModuleToSettings") {
-    group = "project-setup"
-    description = "새로운 모듈을 settings.gradle.kts에 포함시켜 빌드에 인식되도록 합니다."
-
-    doLast {
-        val moduleName = project.findProperty("moduleName")?.toString() ?: run {
-            throw GradleException("모듈 이름이 지정되지 않았습니다. -PmoduleName=xxx 형태로 전달하세요.")
-        }
-        addModuleInclude(":$moduleName")
-        println("addModuleToSettings 수행 완료.")
-    }
-}
-
-// 3. createIndependentModule Task
-tasks.register("createIndependentModule") {
-    group = "project-setup"
-    description = "독립적인 기능을 수행하는 모듈을 생성하고, settings.gradle.kts에 등록합니다."
-
-    doLast {
-        val moduleName = project.findProperty("moduleName")?.toString()
-            ?: throw GradleException("모듈 이름이 지정되지 않았습니다. -PmoduleName=xxx 형태로 전달하세요.")
-        val baseDirProp = project.findProperty("baseDir")?.toString() ?: ""
-
-        // baseDir이 절대 경로인지 확인
-        val baseDirFile = File(baseDirProp)
-        val finalBaseDir = if (baseDirFile.isAbsolute) {
-            baseDirFile
-        } else {
-            File(rootProject.projectDir, baseDirProp)
-        }
-
-        val moduleDir = File(finalBaseDir, moduleName)
-
-        // 모듈 디렉토리 생성
-        if (!safeMkdirs(moduleDir)) {
-            println("⚠️ 모듈 디렉토리를 준비하지 못했으므로 작업을 중단합니다.")
-            return@doLast
-        }
-
-        // build.gradle.kts 생성
-        createBuildGradleKts(moduleDir)
-
-        // 기본 소스 디렉토리 구조 생성
-        createDefaultSourceDirs(moduleDir, moduleName)
-
-        // settings.gradle.kts에 모듈 등록
-        addModuleInclude(":${finalBaseDir.relativeTo(rootProject.projectDir).path.replace(File.separator, ":")}:$moduleName")
-
-        println("createIndependentModule 작업이 완료되었습니다.")
-    }
-}
-
-// 4. createCommonModule Task
-tasks.register("createCommonModule") {
-    group = "project-setup"
-    description = "여러 모듈에서 공통으로 사용하는 기능이나 설정을 담은 모듈을 생성하고, settings.gradle.kts에 등록합니다."
-
-    doLast {
-        val moduleName = project.findProperty("moduleName")?.toString()
-            ?: throw GradleException("공통 모듈 이름이 지정되지 않았습니다. -PmoduleName=xxx 형태로 전달하세요.")
-        val baseDirProp = project.findProperty("baseDir")?.toString() ?: ""
-
-        // baseDir이 절대 경로인지 확인
-        val baseDirFile = File(baseDirProp)
-        val finalBaseDir = if (baseDirFile.isAbsolute) {
-            baseDirFile
-        } else {
-            File(rootProject.projectDir, baseDirProp)
-        }
-
-        val moduleDir = File(finalBaseDir, moduleName)
-
-        // 공통 모듈 디렉토리 생성
-        if (!safeMkdirs(moduleDir)) {
-            println("⚠️ 공통 모듈 디렉토리를 준비하지 못했으므로 작업을 중단합니다.")
-            return@doLast
-        }
-
-        // build.gradle.kts 생성
-        createBuildGradleKts(moduleDir)
-
-        // 기본 소스 디렉토리 구조 생성
-        createDefaultSourceDirs(moduleDir, moduleName)
-
-        // settings.gradle.kts에 모듈 등록
-        addModuleInclude(":${finalBaseDir.relativeTo(rootProject.projectDir).path.replace(File.separator, ":")}:$moduleName")
-
-        println("createCommonModule 작업이 완료되었습니다.")
-    }
-}
-
-// 5. createMicroserviceModule Task
-tasks.register("createMicroserviceModule") {
-    group = "project-setup"
-    description = "마이크로서비스 구조(domain/client/app)를 자동 생성하고, settings.gradle.kts에 등록합니다."
-
-    doLast {
-        val microserviceName = project.findProperty("microserviceName")?.toString()
-            ?: throw GradleException("마이크로서비스 이름이 지정되지 않았습니다. -PmicroserviceName=xxx 형태로 전달하세요.")
-        val baseDirProp = project.findProperty("baseDir")?.toString() ?: ""
-
-        // baseDir이 절대 경로인지 확인
-        val baseDirFile = File(baseDirProp)
-        val finalBaseDir = if (baseDirFile.isAbsolute) {
-            baseDirFile
-        } else {
-            File(rootProject.projectDir, baseDirProp)
-        }
-
-        // baseDir가 "domains/menu"처럼 이미 microserviceName으로 끝나면 중첩 방지
-        val targetBaseDir = if (finalBaseDir.name == microserviceName) {
-            finalBaseDir
-        } else {
-            File(finalBaseDir, microserviceName)
-        }
-
-        // 마이크로서비스 루트 디렉토리 생성
-        if (!safeMkdirs(targetBaseDir)) {
-            println("⚠️ 마이크로서비스 루트 디렉토리를 준비하지 못했으므로 작업을 중단합니다.")
-            return@doLast
-        }
-        println("마이크로서비스 루트 디렉토리 확인됨: ${targetBaseDir.absolutePath}")
-
-        val subModules = listOf("domain","presentation","persistence","app")
-        subModules.forEach { sub ->
-            val subModuleDir = File(targetBaseDir, sub)
-            if (!safeMkdirs(subModuleDir)) {
-                println("⚠️ '$sub' 모듈 디렉토리를 준비하지 못했으므로 스킵합니다.")
-                return@forEach
-            }
-            createBuildGradleKts(subModuleDir)
-            createDefaultSourceDirs(subModuleDir, microserviceName, sub)
-
-            // settings.gradle.kts에 등록
-            addModuleInclude(":${targetBaseDir.relativeTo(rootProject.projectDir).path.replace(File.separator, ":")}:$sub")
-
-            // app 모듈만 따로 Spring Boot 메인 클래스 생성
-            if (sub == "app") {
-                createSpringBootMainClass(subModuleDir, microserviceName, sub)
-            }
-        }
-
-        println("createMicroserviceModule 작업 완료.")
-    }
-}
-
-// 6. updateSettingsGradle Task
-tasks.register("updateSettingsGradle") {
-    group = "project-setup"
-    description = "생성된 모듈들을 settings.gradle.kts 파일에 포함시켜 Gradle이 인식하도록 합니다."
-
-    doLast {
-        val modulePaths = project.findProperty("modulePaths")?.toString() ?: ""
-        if (modulePaths.isBlank()) {
-            println("추가할 모듈 정보가 없습니다. -PmodulePaths=:moduleA,:moduleB 형태로 입력하세요.")
-            return@doLast
-        }
-
-        ensureSettingsFile()
-
-        modulePaths.split(",")
-            .map { it.trim() }
-            .filter { it.isNotEmpty() }
-            .forEach { path ->
-                addModuleInclude(path)
-            }
-
-        println("updateSettingsGradle 작업이 완료되었습니다.")
-    }
-}
-

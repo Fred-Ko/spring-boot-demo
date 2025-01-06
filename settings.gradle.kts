@@ -1,33 +1,10 @@
 rootProject.name = "restaurant-msa-project"
 
-include(":domains:order:domain")
+include("domains:customer:adapter-inbound")
+include("domains:customer:adapter-outbound")
+include("domains:customer:core")
+include("domains:customer:mapper")
+include("domains:customer:shared")
+include("domains:customer:test")
+include("domains:customer:common-shared")
 
-include(":domains:order:presentation")
-
-include(":domains:order:app")
-
-include(":domains:customer:domain")
-
-include(":domains:customer:presentation")
-
-include(":domains:customer:app")
-
-include(":domains:payment:domain")
-
-include(":domains:payment:presentation")
-
-include(":domains:payment:app")
-
-include(":domains:menu:domain")
-
-include(":domains:menu:presentation")
-
-include(":domains:menu:app")
-
-include(":domains:order:persistence")
-
-include(":domains:customer:persistence")
-
-include(":domains:payment:persistence")
-
-include(":domains:menu:persistence")

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: common-shared
+
+# 공통 설정 (예시)

@@ -2,14 +2,77 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="restaurant-msa-project.domains" target="22" />
+      <module name="restaurant-msa-project.domains.customer" target="22" />
+      <module name="restaurant-msa-project.domains.customer.app" target="22" />
+      <module name="restaurant-msa-project.domains.customer.app.main" target="22" />
+      <module name="restaurant-msa-project.domains.customer.app.test" target="22" />
       <module name="restaurant-msa-project.domains.customer.client.main" target="21" />
       <module name="restaurant-msa-project.domains.customer.client.test" target="21" />
+      <module name="restaurant-msa-project.domains.customer.domain" target="22" />
+      <module name="restaurant-msa-project.domains.customer.domain.main" target="22" />
+      <module name="restaurant-msa-project.domains.customer.domain.test" target="22" />
+      <module name="restaurant-msa-project.domains.customer.main" target="22" />
+      <module name="restaurant-msa-project.domains.customer.persistence" target="22" />
+      <module name="restaurant-msa-project.domains.customer.persistence.main" target="22" />
+      <module name="restaurant-msa-project.domains.customer.persistence.test" target="22" />
+      <module name="restaurant-msa-project.domains.customer.presentation" target="22" />
+      <module name="restaurant-msa-project.domains.customer.presentation.main" target="22" />
+      <module name="restaurant-msa-project.domains.customer.presentation.test" target="22" />
+      <module name="restaurant-msa-project.domains.customer.test" target="22" />
+      <module name="restaurant-msa-project.domains.main" target="22" />
+      <module name="restaurant-msa-project.domains.menu" target="22" />
+      <module name="restaurant-msa-project.domains.menu.app" target="22" />
+      <module name="restaurant-msa-project.domains.menu.app.main" target="22" />
+      <module name="restaurant-msa-project.domains.menu.app.test" target="22" />
       <module name="restaurant-msa-project.domains.menu.client.main" target="21" />
       <module name="restaurant-msa-project.domains.menu.client.test" target="21" />
+      <module name="restaurant-msa-project.domains.menu.domain" target="22" />
+      <module name="restaurant-msa-project.domains.menu.domain.main" target="22" />
+      <module name="restaurant-msa-project.domains.menu.domain.test" target="22" />
+      <module name="restaurant-msa-project.domains.menu.main" target="22" />
+      <module name="restaurant-msa-project.domains.menu.persistence" target="22" />
+      <module name="restaurant-msa-project.domains.menu.persistence.main" target="22" />
+      <module name="restaurant-msa-project.domains.menu.persistence.test" target="22" />
+      <module name="restaurant-msa-project.domains.menu.presentation" target="22" />
+      <module name="restaurant-msa-project.domains.menu.presentation.main" target="22" />
+      <module name="restaurant-msa-project.domains.menu.presentation.test" target="22" />
+      <module name="restaurant-msa-project.domains.menu.test" target="22" />
+      <module name="restaurant-msa-project.domains.order" target="22" />
+      <module name="restaurant-msa-project.domains.order.app" target="22" />
+      <module name="restaurant-msa-project.domains.order.app.main" target="22" />
+      <module name="restaurant-msa-project.domains.order.app.test" target="22" />
       <module name="restaurant-msa-project.domains.order.client.main" target="21" />
       <module name="restaurant-msa-project.domains.order.client.test" target="21" />
+      <module name="restaurant-msa-project.domains.order.domain" target="22" />
+      <module name="restaurant-msa-project.domains.order.domain.main" target="22" />
+      <module name="restaurant-msa-project.domains.order.domain.test" target="22" />
+      <module name="restaurant-msa-project.domains.order.main" target="22" />
+      <module name="restaurant-msa-project.domains.order.persistence" target="22" />
+      <module name="restaurant-msa-project.domains.order.persistence.main" target="22" />
+      <module name="restaurant-msa-project.domains.order.persistence.test" target="22" />
+      <module name="restaurant-msa-project.domains.order.presentation" target="22" />
+      <module name="restaurant-msa-project.domains.order.presentation.main" target="22" />
+      <module name="restaurant-msa-project.domains.order.presentation.test" target="22" />
+      <module name="restaurant-msa-project.domains.order.test" target="22" />
+      <module name="restaurant-msa-project.domains.payment" target="22" />
+      <module name="restaurant-msa-project.domains.payment.app" target="22" />
+      <module name="restaurant-msa-project.domains.payment.app.main" target="22" />
+      <module name="restaurant-msa-project.domains.payment.app.test" target="22" />
       <module name="restaurant-msa-project.domains.payment.client.main" target="21" />
       <module name="restaurant-msa-project.domains.payment.client.test" target="21" />
+      <module name="restaurant-msa-project.domains.payment.domain" target="22" />
+      <module name="restaurant-msa-project.domains.payment.domain.main" target="22" />
+      <module name="restaurant-msa-project.domains.payment.domain.test" target="22" />
+      <module name="restaurant-msa-project.domains.payment.main" target="22" />
+      <module name="restaurant-msa-project.domains.payment.persistence" target="22" />
+      <module name="restaurant-msa-project.domains.payment.persistence.main" target="22" />
+      <module name="restaurant-msa-project.domains.payment.persistence.test" target="22" />
+      <module name="restaurant-msa-project.domains.payment.presentation" target="22" />
+      <module name="restaurant-msa-project.domains.payment.presentation.main" target="22" />
+      <module name="restaurant-msa-project.domains.payment.presentation.test" target="22" />
+      <module name="restaurant-msa-project.domains.payment.test" target="22" />
+      <module name="restaurant-msa-project.domains.test" target="22" />
       <module name="restaurant-msa-project.domains.untitled.main" target="21" />
       <module name="restaurant-msa-project.domains.untitled.test" target="21" />
       <module name="spring-boot-demo" target="22" />

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: customer-core
+
+# 데이터베이스 설정 (예시)
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/restaurant
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
