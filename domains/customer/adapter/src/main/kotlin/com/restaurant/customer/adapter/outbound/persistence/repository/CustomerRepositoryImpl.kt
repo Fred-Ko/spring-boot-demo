@@ -1,0 +1,93 @@
+package com.restaurant.customer.adapter.outbound.persistence.repository
+
+import com.linecorp.kotlinjdsl.querydsl.expression.column
+import com.linecorp.kotlinjdsl.spring.data.SpringDataQueryFactory
+import com.linecorp.kotlinjdsl.spring.data.pageQuery
+import com.linecorp.kotlinjdsl.spring.data.singleQuery
+import com.restaurant.customer.adapter.outbound.persistence.entity.CustomerEntity
+import com.restaurant.customer.adapter.outbound.persistence.mapper.CustomerMapper
+import com.restaurant.customer.core.domain.model.Customer
+import com.restaurant.customer.core.domain.model.vo.Email
+import com.restaurant.customer.core.domain.model.vo.PhoneNumber
+import com.restaurant.customer.core.domain.repository.CustomerRepository
+import jakarta.persistence.EntityManager
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.stereotype.Repository
+import java.util.*
+
+@Repository
+class CustomerRepositoryImpl(
+    private val entityManager: EntityManager,
+    private val queryFactory: SpringDataQueryFactory,
+    private val customerMapper: CustomerMapper
+) : CustomerRepository {
+
+    override fun save(customer: Customer): Customer {
+        val entity = customerMapper.toEntity(customer)
+        return customerMapper.toDomain(
+            if (entity.id == UUID(0, 0)) {
+                entityManager.persist(entity)
+                entity
+            } else {
+                entityManager.merge(entity)
+            }
+        )
+    }
+
+    override fun findById(id: UUID): Customer? {
+        return queryFactory.singleQuery<CustomerEntity> {
+            select(entity(CustomerEntity::class))
+            from(entity(CustomerEntity::class))
+            where(column(CustomerEntity::id).equal(id))
+        }?.let(customerMapper::toDomain)
+    }
+
+    override fun findByEmail(email: Email): Customer? {
+        return queryFactory.singleQuery<CustomerEntity> {
+            select(entity(CustomerEntity::class))
+            from(entity(CustomerEntity::class))
+            where(column(CustomerEntity::email).equal(email.value))
+        }?.let(customerMapper::toDomain)
+    }
+
+    override fun findByPhoneNumber(phoneNumber: PhoneNumber): Customer? {
+        return queryFactory.singleQuery<CustomerEntity> {
+            select(entity(CustomerEntity::class))
+            from(entity(CustomerEntity::class))
+            where(column(CustomerEntity::phoneNumber).equal(phoneNumber.value))
+        }?.let(customerMapper::toDomain)
+    }
+
+    override fun delete(customer: Customer) {
+        entityManager.remove(
+            entityManager.getReference(CustomerEntity::class.java, customer.id)
+        )
+    }
+
+    override fun existsByEmail(email: Email): Boolean {
+        val count = queryFactory.singleQuery<Long> {
+            select(count(entity(CustomerEntity::class)))
+            from(entity(CustomerEntity::class))
+            where(column(CustomerEntity::email).equal(email.value))
+        }
+        return count > 0
+    }
+
+    override fun existsByPhoneNumber(phoneNumber: PhoneNumber): Boolean {
+        val count = queryFactory.singleQuery<Long> {
+            select(count(entity(CustomerEntity::class)))
+            from(entity(CustomerEntity::class))
+            where(column(CustomerEntity::phoneNumber).equal(phoneNumber.value))
+        }
+        return count > 0
+    }
+
+    override fun findAll(pageable: Pageable): Page<Customer> {
+        return queryFactory.pageQuery<CustomerEntity>(pageable) {
+            select(entity(CustomerEntity::class))
+            from(entity(CustomerEntity::class))
+            orderBy(column(CustomerEntity::createdAt).desc())
+        }.map(customerMapper::toDomain)
+    }
+}

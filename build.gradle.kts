@@ -83,42 +83,23 @@ tasks.register("createMicroserviceModule") {
 
         // Define the list of directories to create
         val directories = listOf(
-            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/command/usecase",
-            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/command/handlers",
-            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/query/usecase",
-            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/query/handlers",
-            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/service",
+            "adapter/src/main/kotlin/com/restaurant/$serviceName/adapter/inbound/api",
+            "adapter/src/main/kotlin/com/restaurant/$serviceName/adapter/outbound/api",
+            "adapter/src/main/kotlin/com/restaurant/$serviceName/adapter/outbound/persistence/entity",
+            "adapter/src/main/kotlin/com/restaurant/$serviceName/adapter/outbound/persistence/repository",
+            "adapter/src/main/resources",
+            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/command/handler",
+            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/command/command",
+            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/query/handler",
+            "core/src/main/kotlin/com/restaurant/$serviceName/core/application/query/query",
             "core/src/main/kotlin/com/restaurant/$serviceName/core/domain/model",
             "core/src/main/kotlin/com/restaurant/$serviceName/core/domain/repository",
+            "core/src/main/kotlin/com/restaurant/$serviceName/core/domain/service",
             "core/src/main/resources",
-            "core/src/test/kotlin/com/restaurant/$serviceName/core",
-            
-            "adapter-inbound/src/main/kotlin/com/restaurant/$serviceName/adapter/inbound/controller",
-            "adapter-inbound/src/main/resources",
-            "adapter-inbound/src/test/kotlin/com/restaurant/$serviceName/adapter/inbound",
-            "adapter-inbound/src/test/resources",
-            
-            "adapter-outbound/src/main/kotlin/com/restaurant/$serviceName/adapter/outbound/api",
-            "adapter-outbound/src/main/kotlin/com/restaurant/$serviceName/adapter/outbound/persistence/entity",
-            "adapter-outbound/src/main/kotlin/com/restaurant/$serviceName/adapter/outbound/persistence/repository",
-            "adapter-outbound/src/main/resources",
-            "adapter-outbound/src/test/kotlin/com/restaurant/$serviceName/adapter/outbound/api",
-            "adapter-outbound/src/test/kotlin/com/restaurant/$serviceName/adapter/outbound/persistence/entity",
-            "adapter-outbound/src/test/kotlin/com/restaurant/$serviceName/adapter/outbound/persistence/repository",
-            "adapter-outbound/src/test/resources",
-            
-            "mapper/src/main/kotlin/com/restaurant/$serviceName/mapper",
-            "mapper/src/test/kotlin/com/restaurant/$serviceName/mapper",
-            
             "shared/src/main/kotlin/com/restaurant/$serviceName/shared/config",
             "shared/src/main/kotlin/com/restaurant/$serviceName/shared/dto",
             "shared/src/main/kotlin/com/restaurant/$serviceName/shared/util",
             "shared/src/main/resources",
-            "shared/src/test/kotlin/com/restaurant/$serviceName/shared/config",
-            "shared/src/test/kotlin/com/restaurant/$serviceName/shared/dto",
-            "shared/src/test/kotlin/com/restaurant/$serviceName/shared/util",
-            "shared/src/test/resources",
-            
             "test/src"
         )
 
@@ -141,29 +122,20 @@ tasks.register("createMicroserviceModule") {
             // Core module
             "$baseDir/core/build.gradle.kts",
 
-            // Adapter-Inbound module
-            "$baseDir/adapter-inbound/build.gradle.kts",
-
-            // Adapter-Outbound module
-            "$baseDir/adapter-outbound/build.gradle.kts",
-
-            // Mapper module
-            "$baseDir/mapper/build.gradle.kts",
+            // Adapter module
+            "$baseDir/adapter/build.gradle.kts",
 
             // Shared module
             "$baseDir/shared/build.gradle.kts",
 
-            // 통합 테스트 모듈
+            // Test module
             "$baseDir/test/build.gradle.kts",
 
             // Core application.yml
             "$baseDir/core/src/main/resources/application.yml",
 
-            // Adapter-Inbound application.yml
-            "$baseDir/adapter-inbound/src/main/resources/application.yml",
-
-            // Adapter-Outbound application.yml
-            "$baseDir/adapter-outbound/src/main/resources/application.yml",
+            // Adapter application.yml
+            "$baseDir/adapter/src/main/resources/application.yml",
 
             // Shared application.yml
             "$baseDir/shared/src/main/resources/application.yml"
@@ -189,7 +161,7 @@ tasks.register("createMicroserviceModule") {
                                     implementation(project(":common-shared"))
                                 }
                                 """.trimIndent()
-                            "adapter-inbound" -> """
+                            "adapter" -> """
                                 plugins {
                                     kotlin("jvm")
                                 }
@@ -198,30 +170,6 @@ tasks.register("createMicroserviceModule") {
                                     implementation(project(":core"))
                                     implementation("org.springframework.boot:spring-boot-starter-web")
                                     // 추가적인 의존성 선언
-                                }
-                                """.trimIndent()
-                            "adapter-outbound" -> """
-                                plugins {
-                                    kotlin("jvm")
-                                }
-
-                                dependencies {
-                                    implementation(project(":core"))
-                                    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-                                    implementation("org.postgresql:postgresql")
-                                    // 추가적인 의존성 선언
-                                }
-                                """.trimIndent()
-                            "mapper" -> """
-                                plugins {
-                                    kotlin("jvm")
-                                    kotlin("kapt")
-                                }
-
-                                dependencies {
-                                    implementation(project(":core"))
-                                    implementation("org.mapstruct:mapstruct")
-                                    kapt("org.mapstruct:mapstruct-processor")
                                 }
                                 """.trimIndent()
                             "shared" -> """
@@ -277,15 +225,10 @@ tasks.register("createMicroserviceModule") {
                                       ddl-auto: update
                                     show-sql: true
                                 """.trimIndent()
-                            modulePath.startsWith("adapter-inbound") -> """
+                            modulePath.startsWith("adapter") -> """
                                 spring:
                                   application:
-                                    name: ${serviceName}-adapter-inbound
-                                """.trimIndent()
-                            modulePath.startsWith("adapter-outbound") -> """
-                                spring:
-                                  application:
-                                    name: ${serviceName}-adapter-outbound
+                                    name: ${serviceName}-adapter
                                 """.trimIndent()
                             modulePath.startsWith("shared") -> """
                                 spring:
@@ -312,23 +255,30 @@ tasks.register("createMicroserviceModule") {
             }
         }
 
-        // 공통 모듈의 application.yml 생성
-        val commonAppYml = file("${baseDir}/common-shared/src/main/resources/application.yml")
-        if (!commonAppYml.exists()) {
-            commonAppYml.parentFile.mkdirs()
-            commonAppYml.createNewFile()
-            commonAppYml.writeText(
-                """
-                spring:
-                  application:
-                    name: common-shared
-
-                # 공통 설정 (예시)
-                """.trimIndent()
+        // settings.gradle.kts 파일 수정
+        val settingsFile = file("${project.rootDir}/settings.gradle.kts")
+        if (settingsFile.exists()) {
+            val currentContent = settingsFile.readText()
+            val moduleIncludes = listOf(
+                "\"$serviceName\"",
+                "\"$serviceName:adapter\"",
+                "\"$serviceName:core\"",
+                "\"$serviceName:shared\"",
+                "\"$serviceName:test\""
             )
-            println("Created common-shared application.yml: $commonAppYml")
+
+            val newIncludes = moduleIncludes.joinToString("\n") { "include($it)" }
+
+            if (!currentContent.contains("include(\"$serviceName\")")) {
+                settingsFile.appendText("""
+// $serviceName 모듈
+$newIncludes
+
+                """)
+                println("Added $serviceName modules to settings.gradle.kts")
+            }
         } else {
-            println("common-shared application.yml already exists: $commonAppYml")
+            println("Warning: settings.gradle.kts file not found!")
         }
     }
 }
