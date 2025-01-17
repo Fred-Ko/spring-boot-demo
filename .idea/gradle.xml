@@ -9,6 +9,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/customer" />
+            <option value="$PROJECT_DIR$/customer/adapter" />
+            <option value="$PROJECT_DIR$/customer/core" />
+            <option value="$PROJECT_DIR$/customer/shared" />
+            <option value="$PROJECT_DIR$/customer/test" />
+            <option value="$PROJECT_DIR$/outbox" />
           </set>
         </option>
       </GradleProjectSettings>

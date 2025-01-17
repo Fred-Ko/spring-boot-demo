@@ -7,3 +7,6 @@ include("customer:core")
 include("customer:shared")
 include("customer:test")
 
+
+// outbox 모듈
+include("outbox")
