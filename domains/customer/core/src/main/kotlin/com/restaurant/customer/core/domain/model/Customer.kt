@@ -4,6 +4,7 @@ import com.restaurant.customer.core.domain.model.vo.Address
 import com.restaurant.customer.core.domain.model.vo.CustomerName
 import com.restaurant.customer.core.domain.model.vo.Email
 import com.restaurant.customer.core.domain.model.vo.PhoneNumber
+import org.springframework.data.domain.AbstractAggregateRoot
 import java.time.LocalDateTime
 import java.util.*
 
@@ -16,7 +17,7 @@ class Customer private constructor(
     val createdAt: LocalDateTime,
     var updatedAt: LocalDateTime,
     var version: Long = 0
-) {
+) : AbstractAggregateRoot<Customer>() {
     init {
         require(id != UUID(0, 0)) { "고객 ID는 필수입니다." }
     }
@@ -67,21 +68,25 @@ class Customer private constructor(
     fun updateName(newName: CustomerName) {
         this.name = newName
         this.updatedAt = LocalDateTime.now()
+        registerEvent(CustomerNameUpdatedEvent(this))
     }
 
     fun updateEmail(newEmail: Email) {
         this.email = newEmail
         this.updatedAt = LocalDateTime.now()
+        registerEvent(CustomerEmailUpdatedEvent(this))
     }
 
     fun updatePhoneNumber(newPhoneNumber: PhoneNumber) {
         this.phoneNumber = newPhoneNumber
         this.updatedAt = LocalDateTime.now()
+        registerEvent(CustomerPhoneNumberUpdatedEvent(this))
     }
 
     fun updateAddress(newAddress: Address) {
         this.address = newAddress
         this.updatedAt = LocalDateTime.now()
+        registerEvent(CustomerAddressUpdatedEvent(this))
     }
 
     override fun equals(other: Any?): Boolean {

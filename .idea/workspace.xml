@@ -5,30 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721c95bc-5d99-428a-9b5b-a015f827cfe3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/developer-tools.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/spring-boot-demo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resolvedMainClassName" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/bootJar/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/mapper/CustomerMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/mapper/CustomerMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/repository/CustomerRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/repository/CustomerRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/application/service/CustomerApplicationService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/application/service/CustomerApplicationService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/application/service/query/CustomerResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/application/service/query/CustomerResponse.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/Customer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/Customer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/vo/Address.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/vo/Address.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/service/CustomerService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/service/CustomerService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/shared/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/shared/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/test/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/test/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
