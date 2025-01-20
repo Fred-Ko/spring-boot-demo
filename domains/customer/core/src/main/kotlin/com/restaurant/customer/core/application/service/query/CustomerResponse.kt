@@ -44,4 +44,4 @@ data class CustomerResponse(
             version = customer.version
         )
     }
-} 
+}

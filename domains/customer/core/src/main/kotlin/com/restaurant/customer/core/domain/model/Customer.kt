@@ -40,6 +40,28 @@ class Customer private constructor(
                 version = 0
             )
         }
+
+        fun from(
+            id: UUID,
+            name: CustomerName,
+            email: Email,
+            phoneNumber: PhoneNumber,
+            address: Address,
+            createdAt: LocalDateTime,
+            updatedAt: LocalDateTime,
+            version: Long
+        ): Customer {
+            return Customer(
+                id = id,
+                name = name,
+                email = email,
+                phoneNumber = phoneNumber,
+                address = address,
+                createdAt = createdAt,
+                updatedAt = updatedAt,
+                version = version
+            )
+        }
     }
 
     fun updateName(newName: CustomerName) {

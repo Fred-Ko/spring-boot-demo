@@ -1,9 +1,9 @@
 package com.restaurant.customer.adapter.outbound.persistence.repository
 
-import com.linecorp.kotlinjdsl.querydsl.expression.column
 import com.linecorp.kotlinjdsl.spring.data.SpringDataQueryFactory
-import com.linecorp.kotlinjdsl.spring.data.pageQuery
+import com.linecorp.kotlinjdsl.spring.data.listQuery
 import com.linecorp.kotlinjdsl.spring.data.singleQuery
+import com.linecorp.kotlinjdsl.querydsl.expression.col
 import com.restaurant.customer.adapter.outbound.persistence.entity.CustomerEntity
 import com.restaurant.customer.adapter.outbound.persistence.mapper.CustomerMapper
 import com.restaurant.customer.core.domain.model.Customer
@@ -12,6 +12,7 @@ import com.restaurant.customer.core.domain.model.vo.PhoneNumber
 import com.restaurant.customer.core.domain.repository.CustomerRepository
 import jakarta.persistence.EntityManager
 import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Repository
 import java.util.*
@@ -36,26 +37,26 @@ class CustomerRepositoryImpl(
     }
 
     override fun findById(id: UUID): Customer? {
-        return queryFactory.singleQuery<CustomerEntity> {
+        return queryFactory.singleQuery {
             select(entity(CustomerEntity::class))
             from(entity(CustomerEntity::class))
-            where(column(CustomerEntity::id).equal(id))
+            where(col(CustomerEntity::id).equal(id))
         }?.let(customerMapper::toDomain)
     }
 
     override fun findByEmail(email: Email): Customer? {
-        return queryFactory.singleQuery<CustomerEntity> {
+        return queryFactory.singleQuery {
             select(entity(CustomerEntity::class))
             from(entity(CustomerEntity::class))
-            where(column(CustomerEntity::email).equal(email.value))
+            where(col(CustomerEntity::email).equal(email.value))
         }?.let(customerMapper::toDomain)
     }
 
     override fun findByPhoneNumber(phoneNumber: PhoneNumber): Customer? {
-        return queryFactory.singleQuery<CustomerEntity> {
+        return queryFactory.singleQuery {
             select(entity(CustomerEntity::class))
             from(entity(CustomerEntity::class))
-            where(column(CustomerEntity::phoneNumber).equal(phoneNumber.value))
+            where(col(CustomerEntity::phoneNumber).equal(phoneNumber.value))
         }?.let(customerMapper::toDomain)
     }
 
@@ -67,27 +68,38 @@ class CustomerRepositoryImpl(
 
     override fun existsByEmail(email: Email): Boolean {
         val count = queryFactory.singleQuery<Long> {
-            select(count(entity(CustomerEntity::class)))
+            select(count(col(CustomerEntity::id)))
             from(entity(CustomerEntity::class))
-            where(column(CustomerEntity::email).equal(email.value))
+            where(col(CustomerEntity::email).equal(email.value))
         }
         return count > 0
     }
 
     override fun existsByPhoneNumber(phoneNumber: PhoneNumber): Boolean {
         val count = queryFactory.singleQuery<Long> {
-            select(count(entity(CustomerEntity::class)))
+            select(count(col(CustomerEntity::id)))
             from(entity(CustomerEntity::class))
-            where(column(CustomerEntity::phoneNumber).equal(phoneNumber.value))
+            where(col(CustomerEntity::phoneNumber).equal(phoneNumber.value))
         }
         return count > 0
     }
 
     override fun findAll(pageable: Pageable): Page<Customer> {
-        return queryFactory.pageQuery<CustomerEntity>(pageable) {
+        val query = queryFactory.listQuery<CustomerEntity> {
             select(entity(CustomerEntity::class))
             from(entity(CustomerEntity::class))
-            orderBy(column(CustomerEntity::createdAt).desc())
-        }.map(customerMapper::toDomain)
+            offset(pageable.offset.toInt())
+            limit(pageable.pageSize)
+        }
+
+        val countQuery = queryFactory.singleQuery<Long> {
+            select(count(col(CustomerEntity::id)))
+            from(entity(CustomerEntity::class))
+        }
+
+        val content = query.map(customerMapper::toDomain)
+        val total = countQuery ?: 0
+
+        return PageImpl(content, pageable, total)
     }
 }

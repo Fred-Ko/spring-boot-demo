@@ -5,11 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721c95bc-5d99-428a-9b5b-a015f827cfe3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/developer-tools.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/spring-boot-demo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/application/service/dto/CustomerDtos.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resolvedMainClassName" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/bootJar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/mapper/CustomerMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/mapper/CustomerMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/repository/CustomerRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/repository/CustomerRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/application/service/CustomerApplicationService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/application/service/CustomerApplicationService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/application/service/query/CustomerResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/application/service/query/CustomerResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/Customer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/Customer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/vo/Address.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/vo/Address.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/service/CustomerService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/service/CustomerService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/shared/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/shared/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/test/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/test/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,17 +43,20 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/customer/adapter">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="spring-boot-demo" type="f1a62948:ProjectNode" />
+                <item name="restaurant-msa-project" type="f1a62948:ProjectNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="spring-boot-demo" type="f1a62948:ProjectNode" />
-                <item name="order" type="2d1252cf:ModuleNode" />
+                <item name="restaurant-msa-project" type="f1a62948:ProjectNode" />
+                <item name="customer" type="2d1252cf:ModuleNode" />
               </path>
             </expand>
             <select />
@@ -54,6 +75,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;gurumee329&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Fred-Ko/spring-boot-demo.git&quot;,
+    &quot;accountId&quot;: &quot;b721c24f-7b19-445c-92a4-449eed310928&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -69,34 +102,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build spring-boot-demo.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.Application (1).executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.CustomerAppApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.OrderAppApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build spring-boot-demo.executor": "Run",
+    "Kotlin.CustomerApplicationKt.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.Application (1).executor": "Run",
+    "Spring Boot.Application.executor": "Run",
+    "Spring Boot.CustomerAppApplication.executor": "Run",
+    "Spring Boot.OrderAppApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/junhoko/Documents/Fredko/spring-boot-demo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateKotlinClassDialog.RecentsKey">
       <recent name="com.restaurant.customer.presentation.restapi" />
@@ -119,7 +155,14 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.Application (1)">
+  <component name="RunManager" selected="Kotlin.CustomerApplicationKt">
+    <configuration name="CustomerApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.restaurant.customer.CustomerApplicationKt" />
+      <module name="restaurant-msa-project.domains.customer.application.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Application (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="restaurant-msa-project.domains.customer.app.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.restaurant.customer.app.Application" />
@@ -184,17 +227,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.Application (1)" />
+        <item itemvalue="Kotlin.CustomerApplicationKt" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

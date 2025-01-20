@@ -6,50 +6,52 @@ import com.restaurant.customer.core.domain.model.vo.Address
 import com.restaurant.customer.core.domain.model.vo.CustomerName
 import com.restaurant.customer.core.domain.model.vo.Email
 import com.restaurant.customer.core.domain.model.vo.PhoneNumber
-import org.mapstruct.*
-import java.util.*
+import org.springframework.stereotype.Component
 
-@Mapper(
-    componentModel = "spring",
-    injectionStrategy = InjectionStrategy.CONSTRUCTOR,
-    unmappedTargetPolicy = ReportingPolicy.ERROR
-)
-interface CustomerMapper {
+@Component
+class CustomerMapper {
+    fun toDomain(entity: CustomerEntity): Customer {
+        return Customer.from(
+            id = entity.id,
+            name = toCustomerName(entity),
+            email = toEmail(entity.email),
+            phoneNumber = toPhoneNumber(entity.phoneNumber),
+            address = toAddress(entity),
+            createdAt = entity.createdAt,
+            updatedAt = entity.updatedAt,
+            version = entity.version
+        )
+    }
 
-    @Mapping(target = "name", expression = "java(toCustomerName(entity))")
-    @Mapping(target = "email", expression = "java(toEmail(entity.getEmail()))")
-    @Mapping(target = "phoneNumber", expression = "java(toPhoneNumber(entity.getPhoneNumber()))")
-    @Mapping(target = "address", expression = "java(toAddress(entity))")
-    @Mapping(target = "version", source = "version")
-    fun toDomain(entity: CustomerEntity): Customer
+    fun toEntity(domain: Customer): CustomerEntity {
+        return CustomerEntity(
+            id = domain.id,
+            firstName = domain.name.firstName,
+            lastName = domain.name.lastName,
+            email = domain.email.value,
+            phoneNumber = domain.phoneNumber.value,
+            zipCode = domain.address.zipCode,
+            street = domain.address.street,
+            city = domain.address.city,
+            createdAt = domain.createdAt,
+            updatedAt = domain.updatedAt,
+            version = domain.version
+        )
+    }
 
-    @Mapping(target = "firstName", source = "name.firstName")
-    @Mapping(target = "lastName", source = "name.lastName")
-    @Mapping(target = "email", source = "email.value")
-    @Mapping(target = "phoneNumber", source = "phoneNumber.value")
-    @Mapping(target = "zipCode", source = "address.zipCode")
-    @Mapping(target = "street", source = "address.street")
-    @Mapping(target = "city", source = "address.city")
-    @Mapping(target = "version", source = "version")
-    fun toEntity(domain: Customer): CustomerEntity
-
-    @Named("toCustomerName")
-    fun toCustomerName(entity: CustomerEntity): CustomerName {
+    private fun toCustomerName(entity: CustomerEntity): CustomerName {
         return CustomerName(entity.firstName, entity.lastName)
     }
 
-    @Named("toEmail")
-    fun toEmail(email: String): Email {
+    private fun toEmail(email: String): Email {
         return Email(email)
     }
 
-    @Named("toPhoneNumber")
-    fun toPhoneNumber(phoneNumber: String): PhoneNumber {
+    private fun toPhoneNumber(phoneNumber: String): PhoneNumber {
         return PhoneNumber(phoneNumber)
     }
 
-    @Named("toAddress")
-    fun toAddress(entity: CustomerEntity): Address {
+    private fun toAddress(entity: CustomerEntity): Address {
         return Address(entity.zipCode, entity.street, entity.city)
     }
 }

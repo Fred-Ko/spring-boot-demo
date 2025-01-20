@@ -6,6 +6,8 @@ import com.restaurant.customer.core.domain.model.vo.CustomerName
 import com.restaurant.customer.core.domain.model.vo.Email
 import com.restaurant.customer.core.domain.model.vo.PhoneNumber
 import com.restaurant.customer.core.domain.repository.CustomerRepository
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
@@ -73,6 +75,11 @@ class CustomerService(
     @Transactional(readOnly = true)
     fun findCustomerByPhoneNumber(phoneNumber: PhoneNumber): Customer? {
         return customerRepository.findByPhoneNumber(phoneNumber)
+    }
+
+    @Transactional(readOnly = true)
+    fun findAllCustomers(pageable: Pageable): Page<Customer> {
+        return customerRepository.findAll(pageable)
     }
 
     private fun validateNewCustomer(email: Email, phoneNumber: PhoneNumber) {

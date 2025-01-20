@@ -9,11 +9,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/customer" />
-            <option value="$PROJECT_DIR$/customer/adapter" />
-            <option value="$PROJECT_DIR$/customer/core" />
-            <option value="$PROJECT_DIR$/customer/shared" />
-            <option value="$PROJECT_DIR$/customer/test" />
+            <option value="$PROJECT_DIR$/domains" />
+            <option value="$PROJECT_DIR$/domains/customer" />
+            <option value="$PROJECT_DIR$/domains/customer/adapter" />
+            <option value="$PROJECT_DIR$/domains/customer/application" />
+            <option value="$PROJECT_DIR$/domains/customer/core" />
             <option value="$PROJECT_DIR$/outbox" />
           </set>
         </option>

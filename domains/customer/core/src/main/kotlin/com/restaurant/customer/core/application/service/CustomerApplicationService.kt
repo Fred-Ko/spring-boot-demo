@@ -1,8 +1,8 @@
 package com.restaurant.customer.core.application.service
 
-import com.restaurant.customer.core.application.service.dto.CreateCustomerCommand
-import com.restaurant.customer.core.application.service.dto.CustomerResponse
-import com.restaurant.customer.core.application.service.dto.UpdateCustomerCommand
+import com.restaurant.customer.core.application.service.command.CreateCustomerCommand
+import com.restaurant.customer.core.application.service.command.UpdateCustomerCommand
+import com.restaurant.customer.core.application.service.query.CustomerResponse
 import com.restaurant.customer.core.domain.model.vo.Email
 import com.restaurant.customer.core.domain.model.vo.PhoneNumber
 import com.restaurant.customer.core.domain.service.CustomerService
