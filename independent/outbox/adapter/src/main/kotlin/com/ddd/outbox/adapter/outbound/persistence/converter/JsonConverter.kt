@@ -1,9 +1,9 @@
-package com.outbox.adapter.outbound.persistence.converter
+package com.ddd.outbox.adapter.outbound.persistence.converter
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import javax.persistence.AttributeConverter
-import javax.persistence.Converter
+import jakarta.persistence.AttributeConverter
+import jakarta.persistence.Converter
 
 @Converter
 class JsonConverter : AttributeConverter<Any, String> {
@@ -30,4 +30,4 @@ class JsonConverter : AttributeConverter<Any, String> {
             throw IllegalArgumentException("Failed to convert JSON to payload", e)
         }
     }
-} 
+}

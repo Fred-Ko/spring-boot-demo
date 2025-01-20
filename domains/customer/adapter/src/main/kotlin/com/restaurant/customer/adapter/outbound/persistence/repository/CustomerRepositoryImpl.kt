@@ -16,17 +16,21 @@ import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Repository
 import java.util.*
+import org.springframework.context.ApplicationEventPublisher
+import org.springframework.transaction.annotation.Transactional
 
 @Repository
+@Transactional
 class CustomerRepositoryImpl(
     private val entityManager: EntityManager,
     private val queryFactory: SpringDataQueryFactory,
-    private val customerMapper: CustomerMapper
+    private val customerMapper: CustomerMapper,
+    private val applicationEventPublisher: ApplicationEventPublisher
 ) : CustomerRepository {
 
     override fun save(customer: Customer): Customer {
         val entity = customerMapper.toEntity(customer)
-        return customerMapper.toDomain(
+        val savedCustomer = customerMapper.toDomain(
             if (entity.id == UUID(0, 0)) {
                 entityManager.persist(entity)
                 entity
@@ -34,6 +38,14 @@ class CustomerRepositoryImpl(
                 entityManager.merge(entity)
             }
         )
+
+        // 도메인 이벤트 발행
+        customer.getAndClearDomainEvents().forEach { event ->
+            applicationEventPublisher.publishEvent(event)
+            println("Published event: $event")
+        }
+
+        return savedCustomer
     }
 
     override fun findById(id: UUID): Customer? {

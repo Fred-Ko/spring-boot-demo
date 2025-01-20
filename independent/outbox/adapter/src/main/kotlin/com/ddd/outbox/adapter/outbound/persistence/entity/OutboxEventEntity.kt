@@ -1,9 +1,9 @@
-package com.outbox.adapter.outbound.persistence.entity
+package com.ddd.outbox.adapter.outbound.persistence.entity
 
-import com.outbox.adapter.outbound.persistence.converter.JsonConverter
+import com.ddd.outbox.adapter.outbound.persistence.converter.JsonConverter
 import java.time.LocalDateTime
 import java.util.*
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "outbox_events")
@@ -34,4 +34,4 @@ class OutboxEventEntity(
     @Version
     @Column(name = "version")
     val version: Long
-) 
+)

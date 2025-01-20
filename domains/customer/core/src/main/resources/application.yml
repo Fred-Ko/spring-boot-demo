@@ -2,13 +2,17 @@ spring:
   application:
     name: customer-core
 
-# 데이터베이스 설정 (예시)
-spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/customer
-    username: user
-    password: password
+    url: jdbc:h2:mem:restaurantdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true

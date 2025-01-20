@@ -1,9 +1,9 @@
-package com.outbox.adapter.outbound.persistence.repository
+package com.ddd.outbox.adapter.outbound.persistence.repository
 
-import com.outbox.adapter.outbound.persistence.entity.OutboxEventEntity
-import com.outbox.adapter.outbound.persistence.mapper.OutboxEventMapper
-import com.outbox.core.domain.event.OutboxEvent
-import com.outbox.core.domain.repository.OutboxEventRepository
+import com.ddd.outbox.adapter.outbound.persistence.entity.OutboxEventEntity
+import com.ddd.outbox.adapter.outbound.persistence.mapper.OutboxEventMapper
+import com.ddd.outbox.core.domain.event.OutboxEvent
+import com.ddd.outbox.core.domain.repository.OutboxEventRepository
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
@@ -34,4 +34,4 @@ class JpaOutboxEventRepository(
     override fun findByAggregateTypeAndAggregateId(aggregateType: String, aggregateId: String): List<OutboxEvent> {
         return repository.findByAggregateTypeAndAggregateId(aggregateType, aggregateId).map(OutboxEventMapper::toDomain)
     }
-} 
+}

@@ -10,6 +10,8 @@ repositories {
 
 dependencies {
     implementation(project(":domains:customer:core"))
+    implementation(project(":independent:outbox:core"))
+    implementation(project(":independent:outbox:adapter"))
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")

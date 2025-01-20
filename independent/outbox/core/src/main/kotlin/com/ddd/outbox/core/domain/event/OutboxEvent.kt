@@ -1,4 +1,4 @@
-package com.outbox.core.domain.event
+package com.ddd.outbox.core.domain.event
 
 import java.time.LocalDateTime
 import java.util.*
@@ -49,4 +49,4 @@ class OutboxEvent private constructor(
     override fun hashCode(): Int {
         return id.hashCode()
     }
-} 
+}

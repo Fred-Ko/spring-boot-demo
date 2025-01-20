@@ -22,6 +22,12 @@ class Customer private constructor(
         require(id != UUID(0, 0)) { "고객 ID는 필수입니다." }
     }
 
+    fun getAndClearDomainEvents(): MutableCollection<Any> {
+        val events = domainEvents().toMutableList() // 이벤트 복사본 생성
+        clearDomainEvents()
+        return events
+    }
+
     companion object {
         fun create(
             name: CustomerName,
@@ -39,7 +45,9 @@ class Customer private constructor(
                 createdAt = now,
                 updatedAt = now,
                 version = 0
-            )
+            ).also {
+                it.registerEvent(CustomerCreatedEvent(it))
+            }
         }
 
         fun from(

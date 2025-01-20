@@ -8,4 +8,5 @@ include(
 )
 
 // outbox 모듈
-include("outbox")
+include("independent:outbox:core")
+include("independent:outbox:adapter")

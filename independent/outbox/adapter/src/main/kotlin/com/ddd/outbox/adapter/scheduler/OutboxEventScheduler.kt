@@ -1,6 +1,6 @@
-package com.outbox.adapter.scheduler
+package com.ddd.outbox.adapter.scheduler
 
-import com.outbox.core.application.service.OutboxService
+import com.ddd.outbox.core.application.service.OutboxService
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 
@@ -12,4 +12,4 @@ class OutboxEventScheduler(
     fun publishPendingEvents() {
         outboxService.publishPendingEvents()
     }
-} 
+}

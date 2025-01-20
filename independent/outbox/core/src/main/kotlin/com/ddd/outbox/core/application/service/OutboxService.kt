@@ -1,7 +1,7 @@
-package com.outbox.core.application.service
+package com.ddd.outbox.core.application.service
 
-import com.outbox.core.domain.event.OutboxEvent
-import com.outbox.core.domain.repository.OutboxEventRepository
+import com.ddd.outbox.core.domain.event.OutboxEvent
+import com.ddd.outbox.core.domain.repository.OutboxEventRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -45,4 +45,4 @@ class OutboxService(
     fun findEventsByAggregateTypeAndId(aggregateType: String, aggregateId: String): List<OutboxEvent> {
         return outboxEventRepository.findByAggregateTypeAndAggregateId(aggregateType, aggregateId)
     }
-} 
+}

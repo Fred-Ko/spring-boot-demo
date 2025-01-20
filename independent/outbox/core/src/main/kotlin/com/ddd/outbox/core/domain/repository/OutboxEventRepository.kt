@@ -1,9 +1,9 @@
-package com.outbox.core.domain.repository
+package com.ddd.outbox.core.domain.repository
 
-import com.outbox.core.domain.event.OutboxEvent
+import com.ddd.outbox.core.domain.event.OutboxEvent
 
 interface OutboxEventRepository {
     fun save(event: OutboxEvent): OutboxEvent
     fun findUnpublishedEvents(): List<OutboxEvent>
     fun findByAggregateTypeAndAggregateId(aggregateType: String, aggregateId: String): List<OutboxEvent>
-} 
+}

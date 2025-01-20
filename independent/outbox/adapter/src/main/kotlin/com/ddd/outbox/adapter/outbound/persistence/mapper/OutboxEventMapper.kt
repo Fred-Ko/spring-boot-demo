@@ -1,7 +1,7 @@
-package com.outbox.adapter.outbound.persistence.mapper
+package com.ddd.outbox.adapter.outbound.persistence.mapper
 
-import com.outbox.adapter.outbound.persistence.entity.OutboxEventEntity
-import com.outbox.core.domain.event.OutboxEvent
+import com.ddd.outbox.adapter.outbound.persistence.entity.OutboxEventEntity
+import com.ddd.outbox.core.domain.event.OutboxEvent
 
 object OutboxEventMapper {
     fun toEntity(event: OutboxEvent): OutboxEventEntity {
@@ -43,4 +43,4 @@ object OutboxEventMapper {
             }
         }
     }
-} 
+}
