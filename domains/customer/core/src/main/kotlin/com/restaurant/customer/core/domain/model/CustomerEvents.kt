@@ -1,9 +1,12 @@
 package com.restaurant.customer.core.domain.model
 
-sealed class CustomerEvent(val customer: Customer)
+sealed class CustomerEvent(
+    val customer: Customer,
+    val version: Long = 1
+)
 
-class CustomerCreatedEvent(customer: Customer) : CustomerEvent(customer)
-class CustomerNameUpdatedEvent(customer: Customer) : CustomerEvent(customer)
-class CustomerEmailUpdatedEvent(customer: Customer) : CustomerEvent(customer)
-class CustomerPhoneNumberUpdatedEvent(customer: Customer) : CustomerEvent(customer)
-class CustomerAddressUpdatedEvent(customer: Customer) : CustomerEvent(customer)
+class CustomerCreatedEventV1(customer: Customer) : CustomerEvent(customer)
+class CustomerNameUpdatedEventV1(customer: Customer) : CustomerEvent(customer)
+class CustomerEmailUpdatedEventV1(customer: Customer) : CustomerEvent(customer)
+class CustomerPhoneNumberUpdatedEventV1(customer: Customer) : CustomerEvent(customer)
+class CustomerAddressUpdatedEventV1(customer: Customer) : CustomerEvent(customer)

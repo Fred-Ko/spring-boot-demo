@@ -46,7 +46,7 @@ class Customer private constructor(
                 updatedAt = now,
                 version = 0
             ).also {
-                it.registerEvent(CustomerCreatedEvent(it))
+                it.registerEvent(CustomerCreatedEventV1(it))
             }
         }
 
@@ -71,30 +71,73 @@ class Customer private constructor(
                 version = version
             )
         }
+
+        // 이벤트 처리를 위한 팩토리 메서드들
+        fun forEmailUpdate(id: UUID, email: Email): Customer {
+            val now = LocalDateTime.now()
+            return Customer(
+                id = id,
+                name = CustomerName("", ""),
+                email = email,
+                phoneNumber = PhoneNumber(""),
+                address = Address("", "", ""),
+                createdAt = now,
+                updatedAt = now,
+                version = 0
+            )
+        }
+
+        fun forPhoneNumberUpdate(id: UUID, phoneNumber: PhoneNumber): Customer {
+            val now = LocalDateTime.now()
+            return Customer(
+                id = id,
+                name = CustomerName("", ""),
+                email = Email("temp@example.com"),
+                phoneNumber = phoneNumber,
+                address = Address("", "", ""),
+                createdAt = now,
+                updatedAt = now,
+                version = 0
+            )
+        }
+
+        fun forAddressUpdate(id: UUID, address: Address): Customer {
+            val now = LocalDateTime.now()
+            return Customer(
+                id = id,
+                name = CustomerName("", ""),
+                email = Email("temp@example.com"),
+                phoneNumber = PhoneNumber(""),
+                address = address,
+                createdAt = now,
+                updatedAt = now,
+                version = 0
+            )
+        }
     }
 
     fun updateName(newName: CustomerName) {
         this.name = newName
         this.updatedAt = LocalDateTime.now()
-        registerEvent(CustomerNameUpdatedEvent(this))
+        registerEvent(CustomerNameUpdatedEventV1(this))
     }
 
     fun updateEmail(newEmail: Email) {
         this.email = newEmail
         this.updatedAt = LocalDateTime.now()
-        registerEvent(CustomerEmailUpdatedEvent(this))
+        registerEvent(CustomerEmailUpdatedEventV1(this))
     }
 
     fun updatePhoneNumber(newPhoneNumber: PhoneNumber) {
         this.phoneNumber = newPhoneNumber
         this.updatedAt = LocalDateTime.now()
-        registerEvent(CustomerPhoneNumberUpdatedEvent(this))
+        registerEvent(CustomerPhoneNumberUpdatedEventV1(this))
     }
 
     fun updateAddress(newAddress: Address) {
         this.address = newAddress
         this.updatedAt = LocalDateTime.now()
-        registerEvent(CustomerAddressUpdatedEvent(this))
+        registerEvent(CustomerAddressUpdatedEventV1(this))
     }
 
     override fun equals(other: Any?): Boolean {

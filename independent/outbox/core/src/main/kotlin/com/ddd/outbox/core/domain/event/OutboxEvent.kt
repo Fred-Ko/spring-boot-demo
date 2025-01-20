@@ -22,6 +22,7 @@ class OutboxEvent private constructor(
             aggregateType: String,
             aggregateId: String,
             eventType: String,
+            version: Long,
             payload: Any
         ): OutboxEvent {
             return OutboxEvent(
@@ -32,7 +33,7 @@ class OutboxEvent private constructor(
                 payload = payload,
                 createdAt = LocalDateTime.now(),
                 publishedAt = null,
-                version = 0
+                version = version
             )
         }
     }

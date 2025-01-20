@@ -2,7 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="21">
-      <module name="com.restaurant.restaurant-msa-project.domains.customer.test" target="22" />
       <module name="restaurant-msa-project.domains.customer.app" target="22" />
       <module name="restaurant-msa-project.domains.customer.app.main" target="22" />
       <module name="restaurant-msa-project.domains.customer.app.test" target="22" />
@@ -36,7 +35,6 @@
       <module name="restaurant-msa-project.domains.menu.presentation.main" target="22" />
       <module name="restaurant-msa-project.domains.menu.presentation.test" target="22" />
       <module name="restaurant-msa-project.domains.menu.test" target="22" />
-      <module name="restaurant-msa-project.domains.order" target="22" />
       <module name="restaurant-msa-project.domains.order.app" target="22" />
       <module name="restaurant-msa-project.domains.order.app.main" target="22" />
       <module name="restaurant-msa-project.domains.order.app.test" target="22" />
@@ -45,14 +43,12 @@
       <module name="restaurant-msa-project.domains.order.domain" target="22" />
       <module name="restaurant-msa-project.domains.order.domain.main" target="22" />
       <module name="restaurant-msa-project.domains.order.domain.test" target="22" />
-      <module name="restaurant-msa-project.domains.order.main" target="22" />
       <module name="restaurant-msa-project.domains.order.persistence" target="22" />
       <module name="restaurant-msa-project.domains.order.persistence.main" target="22" />
       <module name="restaurant-msa-project.domains.order.persistence.test" target="22" />
       <module name="restaurant-msa-project.domains.order.presentation" target="22" />
       <module name="restaurant-msa-project.domains.order.presentation.main" target="22" />
       <module name="restaurant-msa-project.domains.order.presentation.test" target="22" />
-      <module name="restaurant-msa-project.domains.order.test" target="22" />
       <module name="restaurant-msa-project.domains.payment" target="22" />
       <module name="restaurant-msa-project.domains.payment.app" target="22" />
       <module name="restaurant-msa-project.domains.payment.app.main" target="22" />
@@ -100,7 +96,7 @@
       <module name="spring-boot-demo.domains.customer.test" target="22" />
       <module name="spring-boot-demo.domains.main" target="22" />
       <module name="spring-boot-demo.domains.test" target="22" />
-      <module name="spring-boot-demo.main" target="22" />
+      <module name="spring-boot-demo.main" target="21" />
       <module name="spring-boot-demo.menu.menu-app.main" target="21" />
       <module name="spring-boot-demo.menu.menu-app.test" target="21" />
       <module name="spring-boot-demo.menu.menu-client.main" target="21" />
@@ -149,7 +145,7 @@
       <module name="spring-boot-demo.paymentModule.paymentModule-domain" target="22" />
       <module name="spring-boot-demo.paymentModule.paymentModule-domain.main" target="21" />
       <module name="spring-boot-demo.paymentModule.paymentModule-domain.test" target="21" />
-      <module name="spring-boot-demo.test" target="22" />
+      <module name="spring-boot-demo.test" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

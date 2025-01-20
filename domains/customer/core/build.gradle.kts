@@ -17,6 +17,9 @@ dependencies {
 
     // Validation
     implementation("jakarta.validation:jakarta.validation-api")
+    
+    // ANTLR
+    implementation("org.antlr:antlr4-runtime:4.13.1")
 }
 
 tasks.withType<Test> {

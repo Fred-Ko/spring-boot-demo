@@ -1,4 +1,5 @@
 import java.io.File
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
 plugins {
     kotlin("jvm") version "2.1.0" apply false
@@ -28,6 +29,7 @@ subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")
     apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
+    apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "java")
 
@@ -36,10 +38,13 @@ subprojects {
         targetCompatibility = JavaVersion.VERSION_21
     }
 
+    configure<KotlinJvmProjectExtension> {
+        jvmToolchain(21)
+    }
+
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "21"
+        compilerOptions {
+            freeCompilerArgs.set(listOf("-Xjsr305=strict"))
         }
     }
 
@@ -57,6 +62,14 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    }
+
+    tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+        enabled = false
+    }
+    
+    tasks.getByName<Jar>("jar") {
+        enabled = true
     }
 }
 

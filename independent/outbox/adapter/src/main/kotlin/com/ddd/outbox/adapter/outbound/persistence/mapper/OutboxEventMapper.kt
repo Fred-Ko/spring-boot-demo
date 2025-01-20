@@ -22,6 +22,7 @@ object OutboxEventMapper {
             aggregateType = entity.aggregateType,
             aggregateId = entity.aggregateId,
             eventType = entity.eventType,
+            version = entity.version,
             payload = entity.payload
         ).also {
             // 리플렉션을 사용하여 private 필드 설정

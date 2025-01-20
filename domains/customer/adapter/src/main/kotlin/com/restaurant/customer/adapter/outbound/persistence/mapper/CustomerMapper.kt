@@ -13,10 +13,10 @@ class CustomerMapper {
     fun toDomain(entity: CustomerEntity): Customer {
         return Customer.from(
             id = entity.id,
-            name = toCustomerName(entity),
-            email = toEmail(entity.email),
-            phoneNumber = toPhoneNumber(entity.phoneNumber),
-            address = toAddress(entity),
+            name = CustomerName(entity.firstName, entity.lastName),
+            email = Email(entity.email),
+            phoneNumber = PhoneNumber(entity.phoneNumber),
+            address = Address(entity.zipCode, entity.street, entity.city),
             createdAt = entity.createdAt,
             updatedAt = entity.updatedAt,
             version = entity.version
@@ -37,21 +37,5 @@ class CustomerMapper {
             updatedAt = domain.updatedAt,
             version = domain.version
         )
-    }
-
-    private fun toCustomerName(entity: CustomerEntity): CustomerName {
-        return CustomerName(entity.firstName, entity.lastName)
-    }
-
-    private fun toEmail(email: String): Email {
-        return Email(email)
-    }
-
-    private fun toPhoneNumber(phoneNumber: String): PhoneNumber {
-        return PhoneNumber(phoneNumber)
-    }
-
-    private fun toAddress(entity: CustomerEntity): Address {
-        return Address(entity.zipCode, entity.street, entity.city)
     }
 }

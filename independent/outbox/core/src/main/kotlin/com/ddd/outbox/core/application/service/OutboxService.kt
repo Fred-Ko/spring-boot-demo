@@ -15,12 +15,14 @@ class OutboxService(
         aggregateType: String,
         aggregateId: String,
         eventType: String,
+        version: Long,
         payload: Any
     ): OutboxEvent {
         val event = OutboxEvent.create(
             aggregateType = aggregateType,
             aggregateId = aggregateId,
             eventType = eventType,
+            version = version,
             payload = payload
         )
         return outboxEventRepository.save(event)

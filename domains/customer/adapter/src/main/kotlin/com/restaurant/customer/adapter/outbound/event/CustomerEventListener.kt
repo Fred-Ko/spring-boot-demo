@@ -10,15 +10,13 @@ import org.springframework.transaction.event.TransactionalEventListener
 class CustomerEventListener(
     private val outboxService: OutboxService
 ) {
-    private val logger = org.slf4j.LoggerFactory.getLogger(CustomerEventListener::class.java)
-
     @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
-    fun handleCustomerCreated(event: CustomerCreatedEvent) {
-        logger.info("Handling CustomerCreatedEvent: {}", event)
+    fun handleCustomerCreated(event: CustomerCreatedEventV1) {
         outboxService.saveEvent(
             aggregateType = "Customer",
             aggregateId = event.customer.id.toString(),
             eventType = "CustomerCreated",
+            version = event.version,
             payload = mapOf(
                 "customerId" to event.customer.id,
                 "firstName" to event.customer.name.firstName,
@@ -30,15 +28,15 @@ class CustomerEventListener(
                 "city" to event.customer.address.city
             )
         )
-        logger.info("Successfully saved CustomerCreatedEvent to outbox")
     }
 
     @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
-    fun handleCustomerNameUpdated(event: CustomerNameUpdatedEvent) {
+    fun handleCustomerNameUpdated(event: CustomerNameUpdatedEventV1) {
         outboxService.saveEvent(
             aggregateType = "Customer",
             aggregateId = event.customer.id.toString(),
             eventType = "CustomerNameUpdated",
+            version = event.version,
             payload = mapOf(
                 "customerId" to event.customer.id,
                 "firstName" to event.customer.name.firstName,
@@ -48,11 +46,12 @@ class CustomerEventListener(
     }
 
     @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
-    fun handleCustomerEmailUpdated(event: CustomerEmailUpdatedEvent) {
+    fun handleCustomerEmailUpdated(event: CustomerEmailUpdatedEventV1) {
         outboxService.saveEvent(
             aggregateType = "Customer",
             aggregateId = event.customer.id.toString(),
             eventType = "CustomerEmailUpdated",
+            version = event.version,
             payload = mapOf(
                 "customerId" to event.customer.id,
                 "email" to event.customer.email.value
@@ -61,11 +60,12 @@ class CustomerEventListener(
     }
 
     @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
-    fun handleCustomerPhoneNumberUpdated(event: CustomerPhoneNumberUpdatedEvent) {
+    fun handleCustomerPhoneNumberUpdated(event: CustomerPhoneNumberUpdatedEventV1) {
         outboxService.saveEvent(
             aggregateType = "Customer",
             aggregateId = event.customer.id.toString(),
             eventType = "CustomerPhoneNumberUpdated",
+            version = event.version,
             payload = mapOf(
                 "customerId" to event.customer.id,
                 "phoneNumber" to event.customer.phoneNumber.value
@@ -74,11 +74,12 @@ class CustomerEventListener(
     }
 
     @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
-    fun handleCustomerAddressUpdated(event: CustomerAddressUpdatedEvent) {
+    fun handleCustomerAddressUpdated(event: CustomerAddressUpdatedEventV1) {
         outboxService.saveEvent(
             aggregateType = "Customer",
             aggregateId = event.customer.id.toString(),
             eventType = "CustomerAddressUpdated",
+            version = event.version,
             payload = mapOf(
                 "customerId" to event.customer.id,
                 "zipCode" to event.customer.address.zipCode,

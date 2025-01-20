@@ -16,7 +16,6 @@ import java.util.*
 class CustomerApplicationService(
     private val customerService: CustomerService
 ) {
-
     @Transactional
     fun createCustomer(command: CreateCustomerCommand): CustomerResponse {
         val customer = customerService.createCustomer(

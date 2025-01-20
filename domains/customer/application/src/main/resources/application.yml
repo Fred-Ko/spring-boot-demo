@@ -18,10 +18,23 @@ spring:
       ddl-auto: create-drop
     properties:
       hibernate:
-        show_sql: true
+        show_sql: false
         format_sql: true
         use_sql_comments: true
     open-in-view: false
+
+  # Kafka 설정
+  kafka:
+    bootstrap-servers: localhost:29092
+    consumer:
+      group-id: customer-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: false
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 server:
   port: 8080
@@ -31,8 +44,14 @@ server:
     whitelabel:
       enabled: false
 
+# Outbox 스케줄러 설정
+outbox:
+  scheduler:
+    fixed-delay: 1000 # 1초마다 실행
+
 logging:
   level:
-    org.hibernate.SQL: debug
+    org.hibernate.SQL: error
     org.hibernate.type: trace
     com.restaurant.customer: debug
+    com.ddd.outbox: debug # Outbox 로깅 추가
