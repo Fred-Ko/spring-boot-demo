@@ -3,15 +3,17 @@ package com.ddd.outbox.core.domain.event
 import java.time.LocalDateTime
 import java.util.*
 
-class OutboxEvent private constructor(
-    val id: UUID,
-    val aggregateType: String,
-    val aggregateId: String,
-    val eventType: String,
-    val payload: Any,
-    val createdAt: LocalDateTime,
-    var publishedAt: LocalDateTime?,
-    val version: Long
+class OutboxEvent
+private constructor(
+        val id: UUID,
+        val aggregateType: String,
+        val aggregateId: String,
+        val eventType: String,
+        val topic: String,
+        val payload: Any,
+        val createdAt: LocalDateTime,
+        var publishedAt: LocalDateTime?,
+        val version: Long
 ) {
     fun markAsPublished() {
         publishedAt = LocalDateTime.now()
@@ -19,21 +21,23 @@ class OutboxEvent private constructor(
 
     companion object {
         fun create(
-            aggregateType: String,
-            aggregateId: String,
-            eventType: String,
-            version: Long,
-            payload: Any
+                aggregateType: String,
+                aggregateId: String,
+                eventType: String,
+                topic: String,
+                version: Long,
+                payload: Any
         ): OutboxEvent {
             return OutboxEvent(
-                id = UUID.randomUUID(),
-                aggregateType = aggregateType,
-                aggregateId = aggregateId,
-                eventType = eventType,
-                payload = payload,
-                createdAt = LocalDateTime.now(),
-                publishedAt = null,
-                version = version
+                    id = UUID.randomUUID(),
+                    aggregateType = aggregateType,
+                    aggregateId = aggregateId,
+                    eventType = eventType,
+                    topic = topic,
+                    payload = payload,
+                    createdAt = LocalDateTime.now(),
+                    publishedAt = null,
+                    version = version
             )
         }
     }

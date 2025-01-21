@@ -5,33 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721c95bc-5d99-428a-9b5b-a015f827cfe3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/independent/outbox/adapter/src/main/kotlin/com/ddd/outbox/adapter/outbound/event/config/KafkaConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/independent/outbox/adapter/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/inbound/message/consumer/CustomerEventKafkaConsumer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/inbound/message/consumer/CustomerEventKafkaConsumer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/inbound/message/dto/CustomerEventDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/inbound/message/dto/CustomerEventDto.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/inbound/message/handler/CustomerEventHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/inbound/message/handler/CustomerEventHandler.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/event/CustomerEventListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/event/CustomerEventListener.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/mapper/CustomerMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/mapper/CustomerMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/application/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/application/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/application/src/main/kotlin/com/restaurant/customer/CustomerApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/application/src/main/kotlin/com/restaurant/customer/CustomerApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/application/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/application/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/application/service/CustomerApplicationService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/application/service/CustomerApplicationService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/event/CustomerEvents.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/event/CustomerEvents.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/Customer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/Customer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/CustomerEvents.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/CustomerEvents.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/independent/outbox/adapter/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/independent/outbox/adapter/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/model/CustomerEvents.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/independent/outbox/adapter/src/main/kotlin/com/ddd/outbox/adapter/outbound/event/DefaultOutboxEventPublisher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/independent/outbox/adapter/src/main/kotlin/com/ddd/outbox/adapter/outbound/event/DefaultOutboxEventPublisher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/independent/outbox/adapter/src/main/kotlin/com/ddd/outbox/adapter/outbound/persistence/entity/OutboxEventEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/independent/outbox/adapter/src/main/kotlin/com/ddd/outbox/adapter/outbound/persistence/entity/OutboxEventEntity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/independent/outbox/adapter/src/main/kotlin/com/ddd/outbox/adapter/outbound/persistence/mapper/OutboxEventMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/independent/outbox/adapter/src/main/kotlin/com/ddd/outbox/adapter/outbound/persistence/mapper/OutboxEventMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/independent/outbox/adapter/src/main/kotlin/com/ddd/outbox/adapter/scheduler/OutboxEventScheduler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/independent/outbox/adapter/src/main/kotlin/com/ddd/outbox/adapter/scheduler/OutboxEventScheduler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/independent/outbox/adapter/src/main/kotlin/com/ddd/outbox/adapter/outbound/persistence/repository/JpaOutboxEventRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/independent/outbox/adapter/src/main/kotlin/com/ddd/outbox/adapter/outbound/persistence/repository/JpaOutboxEventRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/independent/outbox/core/src/main/kotlin/com/ddd/outbox/core/application/service/OutboxService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/independent/outbox/core/src/main/kotlin/com/ddd/outbox/core/application/service/OutboxService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/independent/outbox/core/src/main/kotlin/com/ddd/outbox/core/domain/event/OutboxEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/independent/outbox/core/src/main/kotlin/com/ddd/outbox/core/domain/event/OutboxEvent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/independent/outbox/core/src/main/kotlin/com/ddd/outbox/core/domain/repository/OutboxEventRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/independent/outbox/core/src/main/kotlin/com/ddd/outbox/core/domain/repository/OutboxEventRepository.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +96,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build spring-boot-demo.executor": "Run",
-    "Kotlin.CustomerApplicationKt.executor": "Debug",
+    "Kotlin.CustomerApplicationKt.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -138,6 +126,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/domains/customer/core/src/main/kotlin/com/restaurant/customer/core/domain/event" />
+    </key>
     <key name="CreateKotlinClassDialog.RecentsKey">
       <recent name="com.restaurant.customer.presentation.restapi" />
     </key>
@@ -158,7 +149,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.CustomerApplication">
+  <component name="RunManager" selected="Kotlin.CustomerApplicationKt">
     <configuration name="CustomerApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.restaurant.customer.CustomerApplicationKt" />
       <module name="restaurant-msa-project.domains.customer.application.main" />

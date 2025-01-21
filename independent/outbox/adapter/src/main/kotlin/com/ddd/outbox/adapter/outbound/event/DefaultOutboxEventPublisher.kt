@@ -8,20 +8,18 @@ import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Component
 
 @Component
-class DefaultOutboxEventPublisher(
-    private val kafkaTemplate: KafkaTemplate<String, Any>
-) : OutboxEventPublisher {
+class DefaultOutboxEventPublisher(private val kafkaTemplate: KafkaTemplate<String, Any>) :
+        OutboxEventPublisher {
     private val log = LoggerFactory.getLogger(javaClass)
 
     override fun publish(event: OutboxEvent) {
         val envelope = EventEnvelope.from(event, event.payload)
-        kafkaTemplate.send(event.aggregateType, envelope)
-            .whenComplete { result, ex ->
-                when {
-                    ex != null -> log.error("Failed to send event: {}", ex.message, ex)
-                    else -> log.debug("Successfully sent event: {}", result.recordMetadata)
-                }
+        kafkaTemplate.send(event.topic, event.aggregateId, envelope).whenComplete { result, ex ->
+            when {
+                ex != null -> log.error("Failed to send event: {}", ex.message, ex)
+                else -> log.debug("Successfully sent event: {}", result.recordMetadata)
             }
+        }
     }
 
     override fun publishAll(events: List<OutboxEvent>) {

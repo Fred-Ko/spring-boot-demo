@@ -1,5 +1,6 @@
 package com.restaurant.customer.adapter.inbound.message.dto
 
+import com.restaurant.customer.core.domain.event.*
 import com.restaurant.customer.core.domain.model.*
 import com.restaurant.customer.core.domain.model.vo.*
 import java.time.LocalDateTime

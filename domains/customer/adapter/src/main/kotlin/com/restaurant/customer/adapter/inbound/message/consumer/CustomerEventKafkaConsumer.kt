@@ -15,7 +15,7 @@ class CustomerEventKafkaConsumer(
     private val log = LoggerFactory.getLogger(this::class.java)
 
     @KafkaListener(
-        topics = ["Customer"],
+        topics = ["com.restaurant.customer"],
         containerFactory = "kafkaListenerContainerFactory"
     )
     fun consume(@Payload message: String) {

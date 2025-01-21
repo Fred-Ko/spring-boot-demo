@@ -1,7 +1,7 @@
 package com.restaurant.customer.adapter.outbound.event
 
 import com.ddd.outbox.core.application.service.OutboxService
-import com.restaurant.customer.core.domain.model.*
+import com.restaurant.customer.core.domain.event.*
 import org.springframework.stereotype.Component
 import org.springframework.transaction.event.TransactionPhase
 import org.springframework.transaction.event.TransactionalEventListener
@@ -17,6 +17,7 @@ class CustomerEventListener(
             aggregateId = event.customer.id.toString(),
             eventType = "CustomerCreated",
             version = event.version,
+            topic = event.topic,
             payload = mapOf(
                 "customerId" to event.customer.id,
                 "firstName" to event.customer.name.firstName,
@@ -37,6 +38,7 @@ class CustomerEventListener(
             aggregateId = event.customer.id.toString(),
             eventType = "CustomerNameUpdated",
             version = event.version,
+            topic = event.topic,
             payload = mapOf(
                 "customerId" to event.customer.id,
                 "firstName" to event.customer.name.firstName,
@@ -52,6 +54,7 @@ class CustomerEventListener(
             aggregateId = event.customer.id.toString(),
             eventType = "CustomerEmailUpdated",
             version = event.version,
+            topic = event.topic,
             payload = mapOf(
                 "customerId" to event.customer.id,
                 "email" to event.customer.email.value
@@ -66,6 +69,7 @@ class CustomerEventListener(
             aggregateId = event.customer.id.toString(),
             eventType = "CustomerPhoneNumberUpdated",
             version = event.version,
+            topic = event.topic,
             payload = mapOf(
                 "customerId" to event.customer.id,
                 "phoneNumber" to event.customer.phoneNumber.value
@@ -80,6 +84,7 @@ class CustomerEventListener(
             aggregateId = event.customer.id.toString(),
             eventType = "CustomerAddressUpdated",
             version = event.version,
+            topic = event.topic,
             payload = mapOf(
                 "customerId" to event.customer.id,
                 "zipCode" to event.customer.address.zipCode,

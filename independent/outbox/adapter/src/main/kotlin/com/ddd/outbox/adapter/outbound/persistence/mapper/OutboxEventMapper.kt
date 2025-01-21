@@ -13,6 +13,7 @@ object OutboxEventMapper {
             payload = event.payload,
             createdAt = event.createdAt,
             publishedAt = event.publishedAt,
+            topic = event.topic,
             version = event.version
         )
     }
@@ -23,6 +24,7 @@ object OutboxEventMapper {
             aggregateId = entity.aggregateId,
             eventType = entity.eventType,
             version = entity.version,
+            topic = entity.topic,
             payload = entity.payload
         ).also {
             // 리플렉션을 사용하여 private 필드 설정

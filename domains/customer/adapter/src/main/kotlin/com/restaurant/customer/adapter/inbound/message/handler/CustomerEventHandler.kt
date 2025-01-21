@@ -7,7 +7,7 @@ import com.restaurant.customer.adapter.inbound.message.dto.CustomerCreatedEventD
 import com.restaurant.customer.adapter.inbound.message.dto.CustomerEmailUpdatedEventDto
 import com.restaurant.customer.adapter.inbound.message.dto.CustomerPhoneNumberUpdatedEventDto
 import com.restaurant.customer.adapter.inbound.message.dto.EventEnvelope
-import com.restaurant.customer.core.domain.model.*
+import com.restaurant.customer.core.domain.event.*
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 

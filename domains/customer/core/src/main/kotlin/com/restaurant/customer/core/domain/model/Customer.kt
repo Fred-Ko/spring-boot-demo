@@ -1,5 +1,6 @@
 package com.restaurant.customer.core.domain.model
 
+import com.restaurant.customer.core.domain.event.*
 import com.restaurant.customer.core.domain.model.vo.Address
 import com.restaurant.customer.core.domain.model.vo.CustomerName
 import com.restaurant.customer.core.domain.model.vo.Email

@@ -31,6 +31,9 @@ class OutboxEventEntity(
     @Column(name = "published_at")
     var publishedAt: LocalDateTime?,
 
+    @Column(name= "topic", nullable = false)
+    val topic: String,
+
     @Version
     @Column(name = "version")
     val version: Long

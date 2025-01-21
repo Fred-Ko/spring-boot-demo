@@ -16,6 +16,7 @@ class OutboxService(
         aggregateId: String,
         eventType: String,
         version: Long,
+        topic: String,
         payload: Any
     ): OutboxEvent {
         val event = OutboxEvent.create(
@@ -23,6 +24,7 @@ class OutboxService(
             aggregateId = aggregateId,
             eventType = eventType,
             version = version,
+            topic = topic,
             payload = payload
         )
         return outboxEventRepository.save(event)
@@ -41,10 +43,5 @@ class OutboxService(
                 throw e
             }
         }
-    }
-
-    @Transactional(readOnly = true)
-    fun findEventsByAggregateTypeAndId(aggregateType: String, aggregateId: String): List<OutboxEvent> {
-        return outboxEventRepository.findByAggregateTypeAndAggregateId(aggregateType, aggregateId)
     }
 }

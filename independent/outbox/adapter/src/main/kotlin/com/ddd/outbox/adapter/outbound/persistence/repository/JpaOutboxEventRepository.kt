@@ -13,9 +13,6 @@ import java.util.*
 interface SpringDataJpaOutboxEventRepository : JpaRepository<OutboxEventEntity, UUID> {
     @Query("SELECT o FROM OutboxEventEntity o WHERE o.publishedAt IS NULL ORDER BY o.createdAt ASC")
     fun findUnpublishedEvents(): List<OutboxEventEntity>
-
-    @Query("SELECT o FROM OutboxEventEntity o WHERE o.aggregateType = :aggregateType AND o.aggregateId = :aggregateId")
-    fun findByAggregateTypeAndAggregateId(aggregateType: String, aggregateId: String): List<OutboxEventEntity>
 }
 
 @Repository
@@ -29,9 +26,5 @@ class JpaOutboxEventRepository(
 
     override fun findUnpublishedEvents(): List<OutboxEvent> {
         return repository.findUnpublishedEvents().map(OutboxEventMapper::toDomain)
-    }
-
-    override fun findByAggregateTypeAndAggregateId(aggregateType: String, aggregateId: String): List<OutboxEvent> {
-        return repository.findByAggregateTypeAndAggregateId(aggregateType, aggregateId).map(OutboxEventMapper::toDomain)
     }
 }
