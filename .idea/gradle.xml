@@ -18,6 +18,11 @@
             <option value="$PROJECT_DIR$/independent/outbox" />
             <option value="$PROJECT_DIR$/independent/outbox/adapter" />
             <option value="$PROJECT_DIR$/independent/outbox/core" />
+            <option value="$PROJECT_DIR$/order" />
+            <option value="$PROJECT_DIR$/order/adapter" />
+            <option value="$PROJECT_DIR$/order/core" />
+            <option value="$PROJECT_DIR$/order/shared" />
+            <option value="$PROJECT_DIR$/order/test" />
           </set>
         </option>
       </GradleProjectSettings>

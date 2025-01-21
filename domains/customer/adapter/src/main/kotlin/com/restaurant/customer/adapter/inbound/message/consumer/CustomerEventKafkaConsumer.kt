@@ -4,19 +4,29 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.restaurant.customer.adapter.inbound.message.handler.CustomerEventHandler
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.annotation.KafkaListener
+import org.springframework.kafka.annotation.RetryableTopic
 import org.springframework.messaging.handler.annotation.Payload
+import org.springframework.retry.annotation.Backoff
 import org.springframework.stereotype.Component
 
 @Component
 class CustomerEventKafkaConsumer(
-    private val objectMapper: ObjectMapper,
-    private val customerEventHandler: CustomerEventHandler
+        private val objectMapper: ObjectMapper,
+        private val customerEventHandler: CustomerEventHandler
 ) {
     private val log = LoggerFactory.getLogger(this::class.java)
 
+    @RetryableTopic(
+        attempts = "3",
+        backoff = Backoff(delay = 2000, multiplier = 2.0),
+        retryTopicSuffix = "-retry",
+        dltTopicSuffix = "-dlq",
+//        include = [RuntimeException::class],
+//        exclude = [IllegalArgumentException::class]
+    )
     @KafkaListener(
-        topics = ["com.restaurant.customer"],
-        containerFactory = "kafkaListenerContainerFactory"
+            topics = ["com.restaurant.customer"],
+            containerFactory = "kafkaListenerContainerFactory"
     )
     fun consume(@Payload message: String) {
         log.info("Received message: {}", message)
@@ -26,4 +36,4 @@ class CustomerEventKafkaConsumer(
             log.error("Failed to process message: {}", message, e)
         }
     }
-} 
+}
