@@ -8,34 +8,30 @@ import com.restaurant.order.core.domain.model.vo.Availability
 import com.restaurant.order.core.domain.model.vo.Category
 import com.restaurant.order.core.domain.model.vo.Price
 import java.time.LocalDateTime
-import java.time.LocalTime
 import java.util.*
 import org.springframework.data.domain.AbstractAggregateRoot
-
-// 운영 시간 객체
-data class OperatingHours(val startTime: LocalTime, val endTime: LocalTime) {
-  init {
-    require(startTime.isBefore(endTime)) { "시작 시간은 종료 시간보다 이전이어야 합니다." }
-  }
-
-  fun isWithinOperatingHours(dateTime: LocalDateTime): Boolean {
-    val time = dateTime.toLocalTime()
-    return !time.isBefore(startTime) && !time.isAfter(endTime)
-  }
-}
 
 class Menu
 private constructor(
         val id: UUID,
-        val name: String,
-        val description: String,
+        private var _name: String,
+        private var _description: String,
         private var price: Price,
-        private var availability: Availability,
-        val category: Category,
+        private var _availability: Availability,
+        private var _category: Category,
         val createdAt: LocalDateTime,
         var updatedAt: LocalDateTime,
         var version: Long = 0
 ) : AbstractAggregateRoot<Menu>() {
+
+  val name: String
+    get() = _name
+  val description: String
+    get() = _description
+  val category: Category
+    get() = _category
+  val availability: Availability
+    get() = _availability
 
   init {
     require(id != UUID(0, 0)) { "메뉴 ID는 필수입니다." }
@@ -58,18 +54,19 @@ private constructor(
             category: Category
     ): Menu {
       val now = LocalDateTime.now()
-      return Menu(
+      val menu =
+              Menu(
                       id = UUID.randomUUID(),
-                      name = name,
-                      description = description,
+                      _name = name,
+                      _description = description,
                       price = price,
-                      availability = availability,
-                      category = category,
+                      _availability = availability,
+                      _category = category,
                       createdAt = now,
-                      updatedAt = now,
-                      version = 0
+                      updatedAt = now
               )
-              .also { it.registerEvent(MenuCreatedEventV1(it)) }
+      menu.registerEvent(MenuCreatedEventV1(menu))
+      return menu
     }
 
     fun from(
@@ -85,14 +82,56 @@ private constructor(
     ): Menu {
       return Menu(
               id = id,
-              name = name,
-              description = description,
+              _name = name,
+              _description = description,
               price = price,
-              availability = availability,
-              category = category,
+              _availability = availability,
+              _category = category,
               createdAt = createdAt,
               updatedAt = updatedAt,
               version = version
+      )
+    }
+
+    fun forPriceUpdate(id: UUID, price: Price): Menu {
+      val now = LocalDateTime.now()
+      return Menu(
+              id = id,
+              _name = "",
+              _description = "",
+              price = price,
+              _availability = Availability.empty(),
+              _category = Category.empty(),
+              createdAt = now,
+              updatedAt = now
+      )
+    }
+
+    fun forAvailabilityUpdate(id: UUID, availability: Availability): Menu {
+      val now = LocalDateTime.now()
+      return Menu(
+              id = id,
+              _name = "",
+              _description = "",
+              price = Price.ZERO,
+              _availability = availability,
+              _category = Category.empty(),
+              createdAt = now,
+              updatedAt = now
+      )
+    }
+
+    fun forStockUpdate(id: UUID, quantity: Int): Menu {
+      val now = LocalDateTime.now()
+      return Menu(
+              id = id,
+              _name = "",
+              _description = "",
+              price = Price.ZERO,
+              _availability = Availability.empty().copy(stockQuantity = quantity),
+              _category = Category.empty(),
+              createdAt = now,
+              updatedAt = now
       )
     }
   }
@@ -102,7 +141,7 @@ private constructor(
 
   // 재고 감소
   fun decreaseStock(quantity: Int) {
-    availability = availability.decreaseStock(quantity)
+    _availability = _availability.decreaseStock(quantity)
     updatedAt = LocalDateTime.now()
     registerEvent(MenuStockDecreasedEventV1(this, quantity))
   }
@@ -110,16 +149,36 @@ private constructor(
   // 가격 조회
   fun getPrice(): Price = price
 
-  // 할인 적용
+  // 가격 업데이트
   fun updatePrice(newPrice: Price) {
     this.price = newPrice
     updatedAt = LocalDateTime.now()
     registerEvent(MenuPriceUpdatedEventV1(this))
   }
 
+  // 이름 업데이트
+  fun updateName(newName: String) {
+    require(newName.isNotBlank()) { "메뉴 이름은 비어있을 수 없습니다." }
+    this._name = newName
+    updatedAt = LocalDateTime.now()
+  }
+
+  // 설명 업데이트
+  fun updateDescription(newDescription: String) {
+    require(newDescription.isNotBlank()) { "메뉴 설명은 비어있을 수 없습니다." }
+    this._description = newDescription
+    updatedAt = LocalDateTime.now()
+  }
+
+  // 카테고리 업데이트
+  fun updateCategory(newCategory: Category) {
+    this._category = newCategory
+    updatedAt = LocalDateTime.now()
+  }
+
   // 가용성 업데이트
   fun updateAvailability(newAvailability: Availability) {
-    this.availability = newAvailability
+    this._availability = newAvailability
     updatedAt = LocalDateTime.now()
     registerEvent(MenuAvailabilityUpdatedEventV1(this))
   }

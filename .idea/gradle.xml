@@ -14,15 +14,14 @@
             <option value="$PROJECT_DIR$/domains/customer/adapter" />
             <option value="$PROJECT_DIR$/domains/customer/application" />
             <option value="$PROJECT_DIR$/domains/customer/core" />
+            <option value="$PROJECT_DIR$/domains/order" />
+            <option value="$PROJECT_DIR$/domains/order/adapter" />
+            <option value="$PROJECT_DIR$/domains/order/application" />
+            <option value="$PROJECT_DIR$/domains/order/core" />
             <option value="$PROJECT_DIR$/independent" />
             <option value="$PROJECT_DIR$/independent/outbox" />
             <option value="$PROJECT_DIR$/independent/outbox/adapter" />
             <option value="$PROJECT_DIR$/independent/outbox/core" />
-            <option value="$PROJECT_DIR$/order" />
-            <option value="$PROJECT_DIR$/order/adapter" />
-            <option value="$PROJECT_DIR$/order/core" />
-            <option value="$PROJECT_DIR$/order/shared" />
-            <option value="$PROJECT_DIR$/order/test" />
           </set>
         </option>
       </GradleProjectSettings>

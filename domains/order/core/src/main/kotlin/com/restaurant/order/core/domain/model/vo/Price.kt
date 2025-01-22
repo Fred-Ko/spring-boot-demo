@@ -12,4 +12,8 @@ data class Price(val amount: BigDecimal, val currency: String = "KRW") {
     val discountedAmount = amount.multiply(BigDecimal.valueOf(1 - discountRate / 100))
     return copy(amount = discountedAmount)
   }
+
+  companion object {
+    val ZERO = Price(BigDecimal.ZERO)
+  }
 }

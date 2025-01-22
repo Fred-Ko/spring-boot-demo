@@ -1,6 +1,7 @@
 package com.restaurant.order.core.domain.model.vo
 
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 data class Availability(
         val isAvailable: Boolean,
@@ -20,5 +21,15 @@ data class Availability(
     require(quantity > 0) { "감소시킬 수량은 0보다 커야 합니다." }
     require(stockQuantity >= quantity) { "재고가 부족합니다." }
     return copy(stockQuantity = stockQuantity - quantity)
+  }
+
+  companion object {
+    fun empty() =
+            Availability(
+                    isAvailable = false,
+                    stockQuantity = 0,
+                    operatingHours =
+                            OperatingHours(startTime = LocalTime.MIN, endTime = LocalTime.MAX)
+            )
   }
 }

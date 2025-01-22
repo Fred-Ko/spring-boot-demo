@@ -12,9 +12,10 @@ include(
     "independent:outbox:core",
     "independent:outbox:adapter"
 )
-                    // order 모듈
-                    include("order")
-include("order:adapter")
-include("order:core")
-include("order:shared")
-include("order:test")
+
+// order 모듈
+include(
+    "domains:order:core",
+    "domains:order:adapter",
+    "domains:order:application"
+)

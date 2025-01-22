@@ -7,7 +7,14 @@
     <list default="true" id="721c95bc-5d99-428a-9b5b-a015f827cfe3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/inbound/message/consumer/CustomerEventKafkaConsumer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/inbound/message/consumer/CustomerEventKafkaConsumer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/adapter/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/adapter/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/Menu.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/Menu.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/vo/Availability.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/vo/Availability.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/vo/Category.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/vo/Category.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/vo/Price.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/vo/Price.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/independent/outbox/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/independent/outbox/core/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,6 +74,9 @@
     &quot;accountId&quot;: &quot;b721c24f-7b19-445c-92a4-449eed310928&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/domains/order/application/build.gradle.kts" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -86,6 +96,7 @@
   "keyToString": {
     "Gradle.Build spring-boot-demo.executor": "Run",
     "Kotlin.CustomerApplicationKt.executor": "Run",
+    "Kotlin.OrderApplicationKt.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -110,7 +121,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -138,10 +149,17 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Kotlin.CustomerApplicationKt">
+  <component name="RunManager" selected="Kotlin.OrderApplicationKt">
     <configuration name="CustomerApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.restaurant.customer.CustomerApplicationKt" />
       <module name="restaurant-msa-project.domains.customer.application.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.restaurant.order.OrderApplicationKt" />
+      <module name="restaurant-msa-project.domains.order.application.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -217,6 +235,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.OrderApplicationKt" />
         <item itemvalue="Kotlin.CustomerApplicationKt" />
       </list>
     </recent_temporary>
