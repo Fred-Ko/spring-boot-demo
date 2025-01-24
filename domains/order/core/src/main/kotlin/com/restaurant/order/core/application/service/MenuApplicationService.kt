@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class MenuApplicationService(private val menuService: MenuService) {
   @Transactional
   fun createMenu(command: CreateMenuCommand): MenuResponse {
@@ -22,11 +23,7 @@ class MenuApplicationService(private val menuService: MenuService) {
                     description = command.description,
                     price = Price(command.price),
                     availability = command.availability.toDomain(),
-                    category =
-                            Category(
-                                    name = command.category.name,
-                                    description = command.category.description
-                            )
+                    category = command.category.toDomain()
             )
     return MenuResponse.from(menu)
   }
@@ -65,16 +62,12 @@ class MenuApplicationService(private val menuService: MenuService) {
 
   @Transactional(readOnly = true)
   fun findAllMenus(pageable: Pageable): Page<MenuResponse> {
-    return menuService.getAllMenus().map { MenuResponse.from(it) }.let {
-      Page.empty()
-    } // TODO: 실제 페이징 구현 필요
+    return menuService.getAllMenus(pageable).map { MenuResponse.from(it) }
   }
 
   @Transactional(readOnly = true)
   fun findAvailableMenus(pageable: Pageable): Page<MenuResponse> {
-    return menuService.getAvailableMenus().map { MenuResponse.from(it) }.let {
-      Page.empty()
-    } // TODO: 실제 페이징 구현 필요
+    return menuService.getAvailableMenus(pageable).map { MenuResponse.from(it) }
   }
 
   @Transactional(readOnly = true)

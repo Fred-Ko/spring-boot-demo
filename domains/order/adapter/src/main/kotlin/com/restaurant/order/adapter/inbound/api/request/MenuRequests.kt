@@ -49,7 +49,7 @@ data class CategoryRequest(
         val description: String? = null
 ) {
         fun toCreateCommand() =
-                CreateMenuCommand.CategoryInfo(name = name, description = description)
+                CreateMenuCommand.CategoryDto(name = name, description = description)
         fun toUpdateCommand() =
                 UpdateMenuCommand.CategoryInfo(name = name, description = description)
 }
@@ -63,7 +63,7 @@ data class AvailabilityRequest(
         val isAvailable: Boolean = true
 ) {
         fun toCreateCommand() =
-                CreateMenuCommand.AvailabilityInfo(
+                CreateMenuCommand.AvailabilityDto(
                         stockQuantity = stockQuantity,
                         operatingStartTime = operatingStartTime,
                         operatingEndTime = operatingEndTime,

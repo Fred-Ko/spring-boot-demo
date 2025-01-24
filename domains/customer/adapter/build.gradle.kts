@@ -25,8 +25,12 @@ dependencies {
     // H2 Database
     runtimeOnly("com.h2database:h2")
 
+
     // Kotlin JDSL
-    implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-starter-jakarta:2.2.1.RELEASE")
+    implementation("com.linecorp.kotlin-jdsl:jpql-dsl:3.5.4")
+    implementation("com.linecorp.kotlin-jdsl:jpql-render:3.5.4")
+    implementation("com.linecorp.kotlin-jdsl:spring-data-jpa-support:3.5.4")
+
 
     // MapStruct
     implementation("org.mapstruct:mapstruct:1.5.5.Final")

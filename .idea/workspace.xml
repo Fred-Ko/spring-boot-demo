@@ -5,17 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721c95bc-5d99-428a-9b5b-a015f827cfe3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/repository/CustomerRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/repository/CustomerRepositoryImpl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domains/order/adapter/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/adapter/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/order/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/Menu.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/Menu.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/vo/Availability.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/vo/Availability.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/vo/Category.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/vo/Category.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/vo/Price.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/model/vo/Price.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/independent/outbox/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/independent/outbox/core/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/adapter/src/main/kotlin/com/restaurant/order/adapter/inbound/api/request/MenuRequests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/adapter/src/main/kotlin/com/restaurant/order/adapter/inbound/api/request/MenuRequests.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/adapter/src/main/kotlin/com/restaurant/order/adapter/outbound/persistence/repository/MenuRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/adapter/src/main/kotlin/com/restaurant/order/adapter/outbound/persistence/repository/MenuRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/application/service/MenuApplicationService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/application/service/MenuApplicationService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/application/service/command/MenuCommands.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/application/service/command/MenuCommands.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/repository/MenuRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/repository/MenuRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/service/MenuService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/service/MenuService.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +75,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.linecorp.kotlin-jdsl/kotlin-jdsl-query-jakarta/2.2.1.RELEASE/d743697be9adf4bebcebfb30ab7d9ea26b3506ee/kotlin-jdsl-query-jakarta-2.2.1.RELEASE.jar!/com/linecorp/kotlinjdsl/querydsl/expression/ExpressionDslExtensionsKt.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.kafka/spring-kafka/3.3.1/e389d3f28fa4f08b2ac714dfeaa91724fa4d7c9f/spring-kafka-3.3.1.jar!/org/springframework/kafka/core/KafkaTemplate.class" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/domains/order/application/build.gradle.kts" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
@@ -120,8 +122,9 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -268,30 +271,6 @@
     <option featureType="dependencySupport" implementationName="java:org.springframework:spring-messaging" />
     <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
     <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/repository/CustomerRepositoryImpl.kt</url>
-          <line>42</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/repository/CustomerRepositoryImpl.kt</url>
-          <line>44</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/repository/CustomerRepositoryImpl.kt</url>
-          <line>43</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
