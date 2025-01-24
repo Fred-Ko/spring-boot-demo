@@ -16,37 +16,39 @@ data class MenuResponse(
         val createdAt: LocalDateTime,
         val updatedAt: LocalDateTime
 ) {
-  data class CategoryResponse(val name: String, val description: String?)
+        data class CategoryResponse(val name: String, val description: String?)
 
-  data class AvailabilityResponse(
-          val isAvailable: Boolean,
-          val stockQuantity: Int,
-          val operatingStartTime: LocalTime,
-          val operatingEndTime: LocalTime
-  )
+        data class AvailabilityResponse(
+                val isAvailable: Boolean,
+                val stockQuantity: Int,
+                val operatingStartTime: LocalTime,
+                val operatingEndTime: LocalTime
+        )
 
-  companion object {
-    fun from(menu: Menu): MenuResponse {
-      return MenuResponse(
-              id = menu.id,
-              name = menu.name,
-              description = menu.description,
-              price = menu.getPrice().amount,
-              category =
-                      CategoryResponse(
-                              name = menu.category.name,
-                              description = menu.category.description
-                      ),
-              availability =
-                      AvailabilityResponse(
-                              isAvailable = menu.isAvailable(),
-                              stockQuantity = menu.availability.stockQuantity,
-                              operatingStartTime = menu.availability.operatingHours.startTime,
-                              operatingEndTime = menu.availability.operatingHours.endTime
-                      ),
-              createdAt = menu.createdAt,
-              updatedAt = menu.updatedAt
-      )
-    }
-  }
+        companion object {
+                fun from(menu: Menu): MenuResponse {
+                        return MenuResponse(
+                                id = menu.id,
+                                name = menu.name,
+                                description = menu.description,
+                                price = menu.getPrice().amount,
+                                category =
+                                        CategoryResponse(
+                                                name = menu.category.name,
+                                                description = menu.category.description
+                                        ),
+                                availability =
+                                        AvailabilityResponse(
+                                                isAvailable = menu.isAvailable(),
+                                                stockQuantity = menu.availability.stockQuantity,
+                                                operatingStartTime =
+                                                        menu.availability.operatingHours.startTime,
+                                                operatingEndTime =
+                                                        menu.availability.operatingHours.endTime
+                                        ),
+                                createdAt = menu.createdAt,
+                                updatedAt = menu.updatedAt
+                        )
+                }
+        }
 }

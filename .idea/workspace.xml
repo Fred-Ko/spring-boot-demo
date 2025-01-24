@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721c95bc-5d99-428a-9b5b-a015f827cfe3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/repository/CustomerRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/customer/adapter/src/main/kotlin/com/restaurant/customer/adapter/outbound/persistence/repository/CustomerRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/order/adapter/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/adapter/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/order/adapter/src/main/kotlin/com/restaurant/order/adapter/inbound/api/request/MenuRequests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/adapter/src/main/kotlin/com/restaurant/order/adapter/inbound/api/request/MenuRequests.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/order/adapter/src/main/kotlin/com/restaurant/order/adapter/outbound/persistence/repository/MenuRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/adapter/src/main/kotlin/com/restaurant/order/adapter/outbound/persistence/repository/MenuRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/application/service/MenuApplicationService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/application/service/MenuApplicationService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/application/service/command/MenuCommands.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/application/service/command/MenuCommands.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/repository/MenuRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/repository/MenuRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/service/MenuService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/domain/service/MenuService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/application/service/query/MenuResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domains/order/core/src/main/kotlin/com/restaurant/order/core/application/service/query/MenuResponse.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
